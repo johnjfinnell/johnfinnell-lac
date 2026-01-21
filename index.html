@@ -1,1 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="John Finnell, LAc — Acupuncture & holistic medicine." />
+  <title>John Finnell, LAc</title>
 
+  <!-- Optional: elegant serif + clean sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #f7f6f2;
+      --text: #1c1c1c;
+      --muted: rgba(28,28,28,.72);
+      --hairline: rgba(28,28,28,.14);
+      --border: rgba(28,28,28,.18);
+      --max: 980px;
+      --serif: "Libre Baskerville", ui-serif, Georgia, serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{ box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ opacity: .85; }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 22px 80px;
+    }
+
+    /* Micro header */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 16px;
+      font-size: 13px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(28,28,28,.68);
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--hairline);
+    }
+    header a{
+      letter-spacing: .12em;
+      text-transform: none;
+      color: rgba(28,28,28,.68);
+    }
+
+    /* Hero */
+    .hero{
+      text-align:center;
+      padding: 62px 0 10px;
+    }
+    .hero h1{
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(36px, 4.2vw, 58px);
+      line-height: 1.06;
+      margin: 0 0 18px;
+      letter-spacing: -0.02em;
+    }
+    .hero p{
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(18px, 1.8vw, 22px);
+      line-height: 1.55;
+      color: rgba(28,28,28,.84);
+      margin: 0 auto 22px;
+      max-width: 620px;
+    }
+
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 22px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.25);
+      border-radius: 0;
+      font-family: var(--serif);
+      font-size: 16px;
+      letter-spacing: .02em;
+      margin-top: 6px;
+    }
+
+    .hero-image{
+      margin: 34px auto 8px;
+      width: min(680px, 92vw);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.35);
+      padding: 10px; /* creates that subtle “print” feel */
+    }
+    .hero-image img{
+      display:block;
+      width:100%;
+      height:auto;
+      border: 1px solid rgba(28,28,28,.12);
+    }
+
+    /* Scroll cue */
+    .scroll-cue{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width: 44px;
+      height: 44px;
+      margin: 18px auto 0;
+      color: rgba(28,28,28,.55);
+    }
+    .scroll-cue svg{ width: 20px; height: 20px; }
+
+    /* Sections */
+    section{
+      padding: 64px 0;
+      border-top: 1px solid var(--hairline);
+    }
+    section:first-of-type{ border-top: none; }
+
+    .section-title{
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(26px, 2.2vw, 34px);
+      letter-spacing: -0.01em;
+      text-align: center;
+      margin: 0 0 22px;
+    }
+
+    /* What I work with */
+    .bullets{
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+      font-size: 18px;
+      line-height: 1.8;
+      color: rgba(28,28,28,.82);
+    }
+    .bullets li{
+      display:flex;
+      gap: 14px;
+      align-items:flex-start;
+      padding: 6px 0;
+    }
+    .dash{
+      color: rgba(28,28,28,.45);
+      min-width: 18px;
+      font-family: var(--serif);
+    }
+    .note{
+      max-width: 720px;
+      margin: 22px auto 0;
+      text-align: center;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(28,28,28,.72);
+    }
+
+    /* How I work */
+    .center-copy{
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+      font-family: var(--serif);
+      font-size: 20px;
+      line-height: 1.75;
+      color: rgba(28,28,28,.82);
+    }
+    .center-copy p{ margin: 0 0 18px; }
+
+    /* Testimonials (optional) */
+    .testimonials{
+      max-width: 760px;
+      margin: 0 auto;
+      display: grid;
+      gap: 26px;
+    }
+    blockquote{
+      margin: 0;
+      padding: 0;
+      font-family: var(--serif);
+      font-size: 20px;
+      line-height: 1.7;
+      color: rgba(28,28,28,.84);
+    }
+    blockquote footer{
+      margin-top: 10px;
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(28,28,28,.55);
+    }
+
+    /* About + Contact split */
+    .two-col{
+      display:grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 44px;
+      align-items:start;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .about p{
+      margin: 0 0 16px;
+      font-family: var(--serif);
+      font-size: 20px;
+      line-height: 1.75;
+      color: rgba(28,28,28,.82);
+    }
+    .about .quiet{
+      font-family: var(--serif);
+      font-size: 18px;
+      color: rgba(28,28,28,.70);
+    }
+
+    .contact{
+      border-left: 1px solid var(--hairline);
+      padding-left: 26px;
+    }
+    .contact h3{
+      margin: 0 0 14px;
+      font-family: var(--serif);
+      font-size: 26px;
+    }
+    .contact .line{
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.9;
+      color: rgba(28,28,28,.78);
+    }
+    .contact .line a{
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: rgba(28,28,28,.35);
+    }
+
+    footer.site{
+      text-align:center;
+      margin-top: 56px;
+      font-size: 12px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: rgba(28,28,28,.50);
+    }
+
+    /* Responsive */
+    @media (max-width: 780px){
+      .hero{ padding-top: 44px; }
+      .two-col{
+        grid-template-columns: 1fr;
+        gap: 26px;
+      }
+      .contact{
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid var(--hairline);
+        padding-top: 22px;
+      }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: no-preference){
+      html{ scroll-behavior: smooth; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div>JOHN FINNELL, LAc</div>
+      <a href="#contact">Contact</a>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="Intro">
+        <h1>John Finnell, LAc</h1>
+
+        <p>
+          Acupuncture &amp; holistic medicine<br>
+          for nervous system regulation,<br>
+          hormones, digestion, and stress-related conditions.
+        </p>
+
+        <a class="cta" href="#contact">Work With Me</a>
+
+        <!-- Replace the src below with your actual image path -->
+        <div class="hero-image" role="img" aria-label="Portrait of John Finnell">
+          <img src="assets/johnfinnell-portrait-1.png" alt="John Finnell, LAc portrait (black and white)">
+        </div>
+
+        <a class="scroll-cue" href="#work-with" aria-label="Scroll for more">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </section>
+
+      <section id="work-with" aria-label="What I work with">
+        <h2 class="section-title">What I work with</h2>
+
+        <ul class="bullets">
+          <li><span class="dash">—</span><span>Chronic stress and nervous system dysregulation</span></li>
+          <li><span class="dash">—</span><span>Hormonal and thyroid-related symptoms</span></li>
+          <li><span class="dash">—</span><span>Digestive and metabolic issues</span></li>
+          <li><span class="dash">—</span><span>Fatigue, burnout, and persistent tension</span></li>
+        </ul>
+
+        <p class="note">I focus on understanding why symptoms are happening — not just managing them.</p>
+      </section>
+
+      <section id="how" aria-label="How I work">
+        <h2 class="section-title">How I work</h2>
+
+        <div class="center-copy">
+          <p>
+            I’m an independent licensed acupuncturist currently working through<br>
+            collaborative clinics and private arrangements.
+          </p>
+          <p>
+            If you’re interested in working together, reach out<br>
+            and we’ll see if it’s a fit.
+          </p>
+        </div>
+      </section>
+
+      <!-- Optional testimonials section: delete if you don't have quotes ready -->
+      <section id="testimonials" aria-label="Testimonials">
+        <h2 class="section-title">Testimonials</h2>
+
+        <div class="testimonials">
+          <blockquote>
+            “John helped me understand what was actually driving my symptoms.<br>
+            I finally felt grounded again.”
+            <footer>— M.R.</footer>
+          </blockquote>
+
+          <blockquote>
+            “The work was subtle but deep.<br>
+            My body responded steadily.”
+            <footer>— S.K.</footer>
+          </blockquote>
+        </div>
+      </section>
+
+      <section id="about" aria-label="About and Contact">
+        <div class="two-col">
+          <div class="about">
+            <h2 class="section-title" style="text-align:left; margin-bottom:18px;">About</h2>
+
+            <p>
+              I’m a licensed acupuncturist with years of experience working
+              with complex, stress-related health patterns.
+            </p>
+
+            <p>
+              My approach blends Eastern medicine with a clear, systems-based
+              understanding of the body. I value clarity, steadiness,
+              and meeting people where they are.
+            </p>
+
+            <p class="quiet">
+              Outside the clinic, I value movement, creativity, and time offline.
+            </p>
+          </div>
+
+          <div class="contact" id="contact">
+            <h3>Contact</h3>
+
+            <!-- Replace with your real email/phone -->
+            <div class="line">Email: <a href="mailto:wellness@johnfinnell.com">john@yourdomain.com</a></div>
+            <div class="line">Text: <a href="sms:+1XXXXXXXXXX">(___) ___-____</a></div>
+
+            <!-- Optional: add location line if you want -->
+            <!-- <div class="line">Based in: Southern California</div> -->
+          </div>
+        </div>
+
+        <footer class="site">© John Finnell, LAc</footer>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
