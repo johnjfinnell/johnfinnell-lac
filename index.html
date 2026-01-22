@@ -42,7 +42,7 @@
       padding: 28px 22px 80px;
     }
 
-    /* Top micro header (restored) */
+    /* Top micro header */
     header{
       display:flex;
       align-items:center;
@@ -101,7 +101,7 @@
       margin-top: 8px;
     }
 
-    /* Hero image container (restored + better crop control) */
+    /* Hero image container */
     .hero-image{
       margin: 22px auto 8px;
       width: min(360px, 80vw);
@@ -112,9 +112,9 @@
     .hero-image img{
       display:block;
       width:100%;
-      height: 360px;          /* fixed height so crop is consistent */
+      height: 360px;
       object-fit: cover;
-      object-position: 50% 20%; /* push focus upward so it doesn't crop weird */
+      object-position: 50% 20%;
       border: 1px solid rgba(28,28,28,.12);
     }
 
@@ -145,31 +145,32 @@
       margin: 0 0 22px;
     }
 
-    /* Split layout for the two image+text sections (NEW, but matches our original style) */
+    /* Split layout (UPDATED for more vertical image + better alignment) */
     .split{
       max-width: 920px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1.25fr .75fr; /* narrower image column */
       gap: 42px;
-      align-items: center;
+      align-items: start; /* align tops so text + tall image line up */
       padding: 8px 0;
     }
     .split.reverse{
-      grid-template-columns: .9fr 1.1fr;
+      grid-template-columns: .75fr 1.25fr;
+      align-items: start;
     }
 
     .split-text h3{
       font-family: var(--serif);
       font-weight: 700;
-      font-size: 22px; /* slightly bigger like you asked */
+      font-size: 22px;
       margin: 0 0 14px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
     .split-text p{
       font-family: var(--serif);
-      font-size: 18px;  /* slightly bigger than last round */
+      font-size: 18px;
       line-height: 1.8;
       color: rgba(28,28,28,.82);
       margin: 0 0 16px;
@@ -181,18 +182,21 @@
       background: rgba(255,255,255,.25);
       padding: 8px;
     }
+
+    /* Taller crop (UPDATED) */
     .split-image img{
       display:block;
       width:100%;
-      height: 260px;       /* keeps it modest */
+      height: 360px;         /* taller, more vertical */
       object-fit: cover;
+      object-position: 50% 50%;
       border: 1px solid rgba(28,28,28,.12);
     }
 
-    /* Bullets + note (restored) */
+    /* Bullets (UPDATED: left-aligned with paragraphs) */
     .bullets{
-      max-width: 720px;
-      margin: 18px auto 0;
+      max-width: 560px;      /* match paragraph width */
+      margin: 18px 0 0;      /* align left, no auto-centering */
       padding: 0;
       list-style: none;
       font-size: 18px;
@@ -210,9 +214,10 @@
       min-width: 18px;
       font-family: var(--serif);
     }
+
     .note{
       max-width: 720px;
-      margin: 18px auto 0;
+      margin: 22px auto 0;
       text-align: center;
       font-family: var(--serif);
       font-style: italic;
@@ -221,7 +226,7 @@
       color: rgba(28,28,28,.72);
     }
 
-    /* Testimonials (restored) */
+    /* Testimonials */
     .testimonials{
       max-width: 760px;
       margin: 0 auto;
@@ -245,7 +250,7 @@
       color: rgba(28,28,28,.55);
     }
 
-    /* About + Contact (restored) */
+    /* About + Contact */
     .two-col{
       display:grid;
       grid-template-columns: 1.4fr 1fr;
@@ -312,6 +317,9 @@
       .hero-image img{
         height: 320px;
       }
+      .split-image img{
+        height: 320px;
+      }
     }
 
     @media (max-width: 780px){
@@ -368,7 +376,7 @@
         </a>
       </section>
 
-      <!-- WHAT I WORK WITH (text left, image right) -->
+      <!-- WHAT I WORK WITH (UPDATED: bullets aligned with paragraphs + taller image) -->
       <section id="work-with" aria-label="What I work with">
         <div class="split">
           <div class="split-text">
@@ -381,6 +389,14 @@
               These symptoms are often connected. My role is to help identify patterns
               beneath them and support the body’s ability to regulate over time.
             </p>
+
+            <!-- Bullets moved into left column (aligned with paragraphs) -->
+            <ul class="bullets">
+              <li><span class="dash">—</span><span>Chronic stress and nervous system dysregulation</span></li>
+              <li><span class="dash">—</span><span>Hormonal and thyroid-related symptoms</span></li>
+              <li><span class="dash">—</span><span>Digestive and metabolic issues</span></li>
+              <li><span class="dash">—</span><span>Fatigue, burnout, and persistent tension</span></li>
+            </ul>
           </div>
 
           <div class="split-image">
@@ -388,17 +404,11 @@
           </div>
         </div>
 
-        <ul class="bullets">
-          <li><span class="dash">—</span><span>Chronic stress and nervous system dysregulation</span></li>
-          <li><span class="dash">—</span><span>Hormonal and thyroid-related symptoms</span></li>
-          <li><span class="dash">—</span><span>Digestive and metabolic issues</span></li>
-          <li><span class="dash">—</span><span>Fatigue, burnout, and persistent tension</span></li>
-        </ul>
-
+        <!-- Centered quote stays centered -->
         <p class="note">I focus on understanding why symptoms are happening — not just managing them.</p>
       </section>
 
-      <!-- HOW I WORK (image left, text right) -->
+      <!-- HOW I WORK -->
       <section id="how" aria-label="How I work">
         <div class="split reverse">
           <div class="split-image">
@@ -419,7 +429,7 @@
         </div>
       </section>
 
-      <!-- TESTIMONIALS (restored) -->
+      <!-- TESTIMONIALS -->
       <section id="testimonials" aria-label="Testimonials">
         <h2 class="section-title">Testimonials</h2>
 
@@ -438,7 +448,7 @@
         </div>
       </section>
 
-      <!-- ABOUT + CONTACT (restored) -->
+      <!-- ABOUT + CONTACT -->
       <section id="about" aria-label="About and Contact">
         <div class="two-col">
           <div class="about">
