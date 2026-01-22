@@ -19,7 +19,7 @@
       --border: rgba(28,28,28,.18);
       --max: 980px;
       --serif: "Libre Baskerville", ui-serif, Georgia, serif;
-      --sans: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
 
     *{ box-sizing: border-box; }
@@ -112,9 +112,9 @@
     .hero-image img{
       display:block;
       width:100%;
-      height: 450px;
+      height: 420px;                /* a bit more breathing room */
       object-fit: cover;
-      object-position: 50% 50%;
+      object-position: 50% 45%;     /* loosen crop */
       border: 1px solid rgba(28,28,28,.12);
     }
 
@@ -134,7 +134,6 @@
       padding: 64px 0;
       border-top: 1px solid var(--hairline);
     }
-    section:first-of-type{ border-top: none; }
 
     .section-title{
       font-family: var(--serif);
@@ -145,16 +144,22 @@
       margin: 0 0 22px;
     }
 
-    /* Split layout (UPDATED for more vertical image + better alignment) */
+    /* Split layout base */
     .split{
       max-width: 920px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1.25fr .75fr; /* narrower image column */
       gap: 42px;
-      align-items: start; /* align tops so text + tall image line up */
       padding: 8px 0;
     }
+
+    /* ====== KEY FIX: "What I work with" image matches text height ====== */
+    .split.work-with{
+      grid-template-columns: 1.1fr 0.9fr; /* image larger; text slightly narrower */
+      align-items: stretch;               /* stretch both columns to same height */
+    }
+
+    /* Default reverse layout (How I work) */
     .split.reverse{
       grid-template-columns: .75fr 1.25fr;
       align-items: start;
@@ -177,26 +182,41 @@
       max-width: 560px;
     }
 
+    /* Image frame */
     .split-image{
       border: 1px solid var(--border);
       background: rgba(255,255,255,.25);
       padding: 8px;
     }
 
-    /* Taller crop (UPDATED) */
     .split-image img{
       display:block;
       width:100%;
-      height: 360px;         /* taller, more vertical */
-      object-fit: cover;
-      object-position: 50% 50%;
       border: 1px solid rgba(28,28,28,.12);
+      object-fit: cover;
     }
 
-    /* Bullets (UPDATED: left-aligned with paragraphs) */
+    /* Default image height (used elsewhere) */
+    .split-image img.default-crop{
+      height: 360px;
+      object-position: 50% 50%;
+    }
+
+    /* ====== KEY FIX: for work-with image, fill the full column height ====== */
+    .split-image.fill-height{
+      display:flex;
+      align-items: stretch;
+    }
+    .split-image.fill-height img{
+      height: 100%;
+      width: 100%;
+      object-position: 50% 50%;
+    }
+
+    /* Bullets */
     .bullets{
-      max-width: 560px;      /* match paragraph width */
-      margin: 18px 0 0;      /* align left, no auto-centering */
+      max-width: 560px;
+      margin: 18px 0 0;
       padding: 0;
       list-style: none;
       font-size: 18px;
@@ -304,21 +324,23 @@
     }
 
     @media (max-width: 860px){
-      .split{
+      .split,
+      .split.work-with,
+      .split.reverse{
         grid-template-columns: 1fr;
         gap: 26px;
       }
-      .split.reverse{
-        grid-template-columns: 1fr;
-      }
-      .split-text p{
-        max-width: none;
-      }
       .hero-image img{
+        height: 360px;
+      }
+      .split-image img.default-crop{
         height: 320px;
       }
-      .split-image img{
-        height: 320px;
+      .split-image.fill-height{
+        display:block;
+      }
+      .split-image.fill-height img{
+        height: 320px; /* on mobile, use a normal height */
       }
     }
 
@@ -376,9 +398,9 @@
         </a>
       </section>
 
-      <!-- WHAT I WORK WITH (UPDATED: bullets aligned with paragraphs + taller image) -->
+      <!-- WHAT I WORK WITH (IMAGE NOW MATCHES TEXT HEIGHT) -->
       <section id="work-with" aria-label="What I work with">
-        <div class="split">
+        <div class="split work-with">
           <div class="split-text">
             <h3>What I work with</h3>
             <p>
@@ -390,7 +412,6 @@
               beneath them and support the body’s ability to regulate over time.
             </p>
 
-            <!-- Bullets moved into left column (aligned with paragraphs) -->
             <ul class="bullets">
               <li><span class="dash">—</span><span>Chronic stress and nervous system dysregulation</span></li>
               <li><span class="dash">—</span><span>Hormonal and thyroid-related symptoms</span></li>
@@ -399,12 +420,11 @@
             </ul>
           </div>
 
-          <div class="split-image">
+          <div class="split-image fill-height">
             <img src="assets/what-i-work-with-ocean-bw.png" alt="Calm ocean and mountains in black and white">
           </div>
         </div>
 
-        <!-- Centered quote stays centered -->
         <p class="note">I focus on understanding why symptoms are happening — not just managing them.</p>
       </section>
 
@@ -412,7 +432,7 @@
       <section id="how" aria-label="How I work">
         <div class="split reverse">
           <div class="split-image">
-            <img src="assets/how-i-work-desk-bw.png" alt="Paper and wood workspace in black and white">
+            <img class="default-crop" src="assets/how-i-work-desk-bw.png" alt="Paper and wood workspace in black and white">
           </div>
 
           <div class="split-text">
@@ -472,8 +492,6 @@
 
           <div class="contact" id="contact">
             <h3>Contact</h3>
-
-            <!-- Replace these with your real contact details -->
             <div class="line">Text to book: <a href="sms:+19516383932">951-638-3932</a></div>
             <div class="line">Email: <a href="mailto:john@yourdomain.com">john@yourdomain.com</a></div>
           </div>
