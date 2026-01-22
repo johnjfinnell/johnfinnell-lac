@@ -14,7 +14,6 @@
       text-align: center;
     }
 
-    /* ---------- NAV ---------- */
     nav {
       padding: 24px 0;
       font-size: 14px;
@@ -22,7 +21,6 @@
       text-transform: uppercase;
     }
 
-    /* ---------- HERO ---------- */
     .hero {
       max-width: 720px;
       margin: 40px auto 80px;
@@ -30,33 +28,32 @@
     }
 
     .hero h1 {
-      font-size: 26px; /* reduced */
+      font-size: 26px;
       margin-bottom: 8px;
       letter-spacing: 0.02em;
     }
 
     .hero p {
-      font-size: 14px; /* reduced */
+      font-size: 14px;
       margin-top: 0;
       color: #444;
     }
 
     .hero img {
       width: 100%;
-      max-height: 360px; /* reduced portrait size */
+      max-height: 360px;
       object-fit: cover;
       margin-top: 32px;
       border: 1px solid #ddd;
+      display: block;
     }
 
-    /* ---------- SECTIONS ---------- */
     section {
       max-width: 960px;
       margin: 80px auto;
       padding: 0 20px;
     }
 
-    /* ---------- SPLIT LAYOUT ---------- */
     .split-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -80,12 +77,12 @@
 
     .split-image img {
       width: 100%;
-      max-height: 300px;
+      max-height: 260px;      /* keeps it modest */
       object-fit: cover;
       border: 1px solid #ddd;
+      display: block;
     }
 
-    /* ---------- MOBILE ---------- */
     @media (max-width: 768px) {
       .split-section {
         grid-template-columns: 1fr;
@@ -109,7 +106,6 @@
       }
     }
 
-    /* ---------- FOOTER ---------- */
     footer {
       margin: 100px 0 40px;
       font-size: 13px;
@@ -119,21 +115,17 @@
 </head>
 
 <body>
+  <nav>WORK WITH ME</nav>
 
-  <!-- NAV -->
-  <nav>
-    Work With Me
-  </nav>
-
-  <!-- HERO -->
   <div class="hero">
     <h1>John Finnell, L.Ac.</h1>
-    <p>Acupuncture & Holistic Medicine</p>
+    <p>Acupuncture &amp; Holistic Medicine</p>
 
-    <img src="johnfinnell-portrait-1.png" alt="John Finnell portrait black and white">
+    <!-- HERO PORTRAIT -->
+    <img src="assets/johnfinnell-portrait-1.png" alt="John Finnell portrait black and white">
   </div>
 
-  <!-- WHAT I WORK WITH -->
+  <!-- WHAT I WORK WITH (text left, image right) -->
   <section class="split-section">
     <div class="split-text">
       <h2>What I work with</h2>
@@ -148,14 +140,14 @@
     </div>
 
     <div class="split-image">
-      <img src="what-i-work-with-ocean-bw.png" alt="Calm ocean and mountains black and white">
+      <img src="assets/what-i-work-with-ocean-bw.png" alt="Calm ocean and mountains black and white">
     </div>
   </section>
 
-  <!-- HOW I WORK -->
+  <!-- HOW I WORK (image left, text right) -->
   <section class="split-section">
     <div class="split-image">
-      <img src="how-i-work-desk-bw.png" alt="Paper and wood desk black and white">
+      <img src="assets/how-i-work-desk-bw.png" alt="Paper and wood desk black and white">
     </div>
 
     <div class="split-text">
@@ -171,10 +163,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    Text to book: 951-638-3932
-  </footer>
-
+  <footer>Text to book: 951-638-3932</footer>
 </body>
 </html>
