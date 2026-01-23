@@ -10,7 +10,7 @@
     main{
      /* zoom: 0.75;    try 0.9, 0.85, or 0.8 */
       transform: scale(0.75);
-  transform-origin: top center;
+      transform-origin: top center;
     }
 
     :root{
@@ -28,13 +28,13 @@
       --hero-scale: 1.00;
 
       --side-img-maxw: 460px;
-  --side-img-aspect: 3 / 4;
+      --side-img-aspect: 3 / 4;
 
-  /* Cropping (2nd value = vertical) */
-  /* LOWER % shows more TOP (crops bottom more) */
-  /* HIGHER % shows more BOTTOM (crops top more) */
-  --ocean-object-position: 50% 10%;
-  --desk-object-position: 50% 50%;
+      /* Cropping (2nd value = vertical) */
+      /* LOWER % shows more TOP (crops bottom more) */
+      /* HIGHER % shows more BOTTOM (crops top more) */
+      --ocean-object-position: 50% 10%;
+      --desk-object-position: 50% 50%;
 
       --section-pad: clamp(44px, 6vw, 86px);
       --row-gap: clamp(22px, 4vw, 40px);
@@ -43,9 +43,9 @@
 
     html { scroll-behavior: smooth; }
     body{
-  box-sizing: border-box;
-  margin: 0;
-  min-height: 100vh;
+      box-sizing: border-box;
+      margin: 0;
+      min-height: 100vh;
       background: var(--bg);
       color: var(--ink);
       font-family: Georgia, "Times New Roman", Times, serif;
@@ -172,54 +172,41 @@
     .row.reverse .side-img-frame{ justify-self: start; }
 
     .side-img{
-  width: 100%;
-  aspect-ratio: var(--side-img-aspect);
-  display: block;
-  object-fit: cover;
-  border: 1px solid rgba(0,0,0,.14);
-}
+      width: 100%;
+      aspect-ratio: var(--side-img-aspect);
+      display: block;
+      object-fit: cover;
+      border: 1px solid rgba(0,0,0,.14);
+    }
 
-.side-img.ocean{ object-position: var(--ocean-object-position); }
-.side-img.desk{ object-position: var(--desk-object-position); }
+    .side-img.ocean{ object-position: var(--ocean-object-position); }
+    .side-img.desk{ object-position: var(--desk-object-position); }
 
-   /* BULLETS GRID */
-.bullets{
-  margin: 34px 0 0;
-  padding: 0;
-  list-style: none;
-  max-width: none;
+    /* ====== BULLETS (baseline) ====== */
+    .bullets{
+      margin: 34px 0 0;
+      padding: 0;
+      list-style: none;
+      max-width: none;
+    }
 
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 48px;
-  row-gap: 22px;
-}
+    .bullets li{
+      display:flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: clamp(19px, 2vw, 24px);
+      color: var(--muted);
+      margin: 16px 0;
+      line-height: 1.45;
+    }
 
-/* Make bullets span the full row (under BOTH text + image) */
-.bullets.bullets-wide{
-  grid-column: 1 / -1;
-  margin-top: 26px;
-}
-
-/* Individual bullet rows */
-.bullets li{
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  font-size: clamp(19px, 2vw, 24px);
-  color: var(--muted);
-  margin: 0;          /* IMPORTANT: removes stacked-list feel */
-  line-height: 1.45;
-}
-
-/* Dash styling */
-.dash{
-  width: 30px;
-  flex: 0 0 30px;
-  height: 2px;
-  background: rgba(0,0,0,.28);
-  margin-top: 0.85em;
-}
+    .dash{
+      width: 30px;
+      flex: 0 0 30px;
+      height: 2px;
+      background: rgba(0,0,0,.28);
+      margin-top: 0.85em;
+    }
 
     .quote{
       margin: 42px auto 0;
@@ -230,6 +217,43 @@
       max-width: 860px;
     }
 
+    /* ====== WHAT I WORK WITH (UPDATED LAYOUT) ====== */
+    .row.workwith{
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: start;
+    }
+
+    .bullets.bullets-side{
+      margin: 6px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .bullets.bullets-side li{
+      margin: 0;
+    }
+
+    .banner-img-frame{
+      margin-top: 34px;
+      border: 1px solid var(--rule);
+      padding: 10px;
+      background: rgba(255,255,255,.25);
+      box-sizing: border-box;
+    }
+
+    .banner-img{
+      width: 100%;
+      aspect-ratio: 16 / 6;
+      display: block;
+      object-fit: cover;
+      border: 1px solid rgba(0,0,0,.14);
+    }
+
+    .banner-img.ocean{
+      object-position: var(--ocean-object-position);
+    }
+
     /* ====== HOW I WORK CARDS (UPDATED) ====== */
     .cards{
       display:grid;
@@ -237,10 +261,9 @@
       gap: 22px;
       margin-top: 26px;
     }
-    /* This makes the cards sit BELOW the image/text, spanning the full row width */
     .cards.below-how{
-      grid-column: 1 / -1;     /* span both columns of the .row.reverse grid */
-      margin-top: 28px;        /* breathing room below the paragraphs */
+      grid-column: 1 / -1;
+      margin-top: 28px;
     }
 
     .card{
@@ -248,10 +271,9 @@
       padding: 18px 18px 20px;
       background: rgba(255,255,255,.18);
     }
-    /* 15% bigger text inside the blocks */
     .card h3{
       margin: 0 0 10px;
-      font-size: 24px;         /* was 18px */
+      font-size: 24px;
       letter-spacing: .12em;
       text-transform: uppercase;
       color: var(--ink);
@@ -259,7 +281,7 @@
     .card p{
       margin: 0;
       color: var(--muted);
-      font-size: 24px;         /* was 18px */
+      font-size: 24px;
       line-height: 1.55;
     }
 
@@ -272,10 +294,11 @@
 
     @media (max-width: 920px){
       .row, .row.reverse{ grid-template-columns: 1fr; }
+      .row.workwith{ grid-template-columns: 1fr; }
+      .bullets.bullets-side{ margin-top: 18px; }
       .side-img-frame, .row.reverse .side-img-frame{ justify-self: center; }
       .cards{ grid-template-columns: 1fr; }
-      .bullets{ max-width: 70ch; }
-      .cards.below-how{ grid-column: auto; } /* not needed in 1-col, but harmless */
+      .cards.below-how{ grid-column: auto; }
     }
   </style>
 </head>
@@ -311,19 +334,18 @@
       </div>
     </section>
 
-    <!-- WHAT I WORK WITH -->
+    <!-- WHAT I WORK WITH (UPDATED) -->
     <section>
       <div class="wrap">
-        <div class="row">
+        <div class="row workwith">
           <div>
             <h2 class="section-title">What I Work With</h2>
 
             <p class="lede">
-            Most people I work with don’t have just one issue — they have patterns. Stress, hormones,
-            digestion, sleep, and energy are all part of the same system, and symptoms tend to show up
-            where the system is under the most strain.
+              Most people I work with don’t have just one issue — they have patterns. Stress, hormones,
+              digestion, sleep, and energy are all part of the same system, and symptoms tend to show up
+              where the system is under the most strain.
             </p>
-
 
             <p class="lede">
               These symptoms are often connected. My role is to help identify patterns beneath them
@@ -331,23 +353,24 @@
             </p>
           </div>
 
-          <div class="side-img-frame">
-            <img
-              class="side-img ocean"
-              src="assets/what-i-work-with-ocean-bw.png"
-              alt="Calm ocean and mountains"
-            />
-          </div>
-        </div>
-
-           <ul class="bullets bullets-wide">
+          <div>
+            <ul class="bullets bullets-side">
               <li><span class="dash"></span><span>Chronic stress and nervous system dysregulation</span></li>
               <li><span class="dash"></span><span>Hormonal and thyroid-related symptoms</span></li>
               <li><span class="dash"></span><span>Digestive and metabolic issues</span></li>
               <li><span class="dash"></span><span>Fatigue, burnout, and persistent tension</span></li>
             </ul>
-            </div>
-      
+          </div>
+        </div>
+
+        <div class="banner-img-frame">
+          <img
+            class="banner-img ocean"
+            src="assets/what-i-work-with-ocean-bw.png"
+            alt="Calm ocean and mountains"
+          />
+        </div>
+
         <div class="quote">
           I focus on understanding <em>why</em> symptoms are happening — not just managing them.
         </div>
@@ -375,8 +398,8 @@
             </p>
             
             <p class="lede">
-            This work favors consistency over intensity. Small, well-timed inputs create stability,
-            and stability is what allows deeper healing to happen without forcing the system.
+              This work favors consistency over intensity. Small, well-timed inputs create stability,
+              and stability is what allows deeper healing to happen without forcing the system.
             </p>
 
             <p class="lede">
@@ -385,7 +408,6 @@
             </p>
           </div>
 
-          <!-- MOVED: cards now live below both columns, aligned image-left to text-right -->
           <div class="cards below-how" aria-label="How it works steps">
             <div class="card">
               <h3>1. Start</h3>
