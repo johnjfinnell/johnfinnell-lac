@@ -33,7 +33,7 @@
       /* Cropping (2nd value = vertical) */
       /* LOWER % shows more TOP (crops bottom more) */
       /* HIGHER % shows more BOTTOM (crops top more) */
-      --ocean-object-position: 50% 10%;
+      --ocean-object-position: 50% 62%;
       --desk-object-position: 50% 50%;
 
       --section-pad: clamp(44px, 6vw, 86px);
@@ -224,7 +224,7 @@
     }
 
     .bullets.bullets-side{
-      margin: 6px 0 0;
+      margin: 0; /* key: no push-down */
       display: flex;
       flex-direction: column;
       gap: 18px;
@@ -244,7 +244,7 @@
 
     .banner-img{
       width: 100%;
-      aspect-ratio: 16 / 6;
+      aspect-ratio: 16 / 8; /* taller so it doesn’t become “sky only” */
       display: block;
       object-fit: cover;
       border: 1px solid rgba(0,0,0,.14);
@@ -334,13 +334,13 @@
       </div>
     </section>
 
-    <!-- WHAT I WORK WITH (UPDATED) -->
+    <!-- WHAT I WORK WITH (FIXED) -->
     <section>
       <div class="wrap">
+        <h2 class="section-title">What I Work With</h2>
+
         <div class="row workwith">
           <div>
-            <h2 class="section-title">What I Work With</h2>
-
             <p class="lede">
               Most people I work with don’t have just one issue — they have patterns. Stress, hormones,
               digestion, sleep, and energy are all part of the same system, and symptoms tend to show up
