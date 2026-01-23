@@ -172,12 +172,18 @@
     .side-img.ocean{ object-position: var(--ocean-object-position); }
     .side-img.desk{ object-position: var(--desk-object-position); }
 
-    .bullets{
-      margin: 30px 0 0;
-      padding: 0;
-      list-style: none;
-      max-width: 62ch;
-    }
+   .bullets{
+  margin: 34px 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: none;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 48px;
+  row-gap: 22px;
+}
+
     .bullets li{
       display:flex;
       gap: 14px;
