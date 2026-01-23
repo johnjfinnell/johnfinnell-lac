@@ -182,7 +182,8 @@
 .side-img.ocean{ object-position: var(--ocean-object-position); }
 .side-img.desk{ object-position: var(--desk-object-position); }
 
-   .bullets{
+   /* BULLETS GRID */
+.bullets{
   margin: 34px 0 0;
   padding: 0;
   list-style: none;
@@ -194,21 +195,31 @@
   row-gap: 22px;
 }
 
-    .bullets li{
-      display:flex;
-      gap: 14px;
-      align-items: flex-start;
-      font-size: clamp(19px, 2vw, 24px);
-      color: var(--muted);
-      margin: 16px 0;
-    }
-    .dash{
-      width: 30px;
-      flex: 0 0 30px;
-      height: 2px;
-      background: rgba(0,0,0,.28);
-      margin-top: 16px;
-    }
+/* Make bullets span the full row (under BOTH text + image) */
+.bullets.bullets-wide{
+  grid-column: 1 / -1;
+  margin-top: 26px;
+}
+
+/* Individual bullet rows */
+.bullets li{
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: clamp(19px, 2vw, 24px);
+  color: var(--muted);
+  margin: 0;          /* IMPORTANT: removes stacked-list feel */
+  line-height: 1.45;
+}
+
+/* Dash styling */
+.dash{
+  width: 30px;
+  flex: 0 0 30px;
+  height: 2px;
+  background: rgba(0,0,0,.28);
+  margin-top: 0.85em;
+}
 
     .quote{
       margin: 42px auto 0;
@@ -318,13 +329,6 @@
               These symptoms are often connected. My role is to help identify patterns beneath them
               and support the body’s ability to regulate over time.
             </p>
-
-            <ul class="bullets">
-              <li><span class="dash"></span><span>Chronic stress and nervous system dysregulation</span></li>
-              <li><span class="dash"></span><span>Hormonal and thyroid-related symptoms</span></li>
-              <li><span class="dash"></span><span>Digestive and metabolic issues</span></li>
-              <li><span class="dash"></span><span>Fatigue, burnout, and persistent tension</span></li>
-            </ul>
           </div>
 
           <div class="side-img-frame">
@@ -336,6 +340,14 @@
           </div>
         </div>
 
+           <ul class="bullets bullets-wide">
+              <li><span class="dash"></span><span>Chronic stress and nervous system dysregulation</span></li>
+              <li><span class="dash"></span><span>Hormonal and thyroid-related symptoms</span></li>
+              <li><span class="dash"></span><span>Digestive and metabolic issues</span></li>
+              <li><span class="dash"></span><span>Fatigue, burnout, and persistent tension</span></li>
+            </ul>
+            </div>
+      
         <div class="quote">
           I focus on understanding <em>why</em> symptoms are happening — not just managing them.
         </div>
