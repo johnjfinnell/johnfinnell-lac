@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+  
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -9,10 +10,14 @@
     main{
       transform: scale(var(--page-scale));
       transform-origin: top center;
-      width: 100%;
     }
 
+    /* =========================
+       THEME TOKENS (DEFAULT = DARK)
+       We'll swap <html data-theme="light"> via JS.
+    ========================== */
     :root{
+      /* Desktop scale (keeps your premium “print” feel) */
       --page-scale: 0.75;
 
       /* DARK (default) */
@@ -34,12 +39,7 @@
       --img-stroke: rgba(238,231,221,.14);
 
       --container: 1080px;
-
-      /* breathing room */
-      --gutter: clamp(18px, 3.6vw, 40px);
-
-      /* FRAME padding (this is what felt “too thick” on mobile) */
-      --frame-pad: 10px;
+      --gutter: clamp(18px, 3vw, 36px);
 
       --hero-maxw: 640px;
       --hero-aspect: 4 / 5;
@@ -57,6 +57,7 @@
       --col-gap: clamp(26px, 5vw, 60px);
     }
 
+    /* LIGHT THEME OVERRIDES */
     html[data-theme="light"]{
       --bg: #f5f2ee;
       --head: rgba(27,27,27,.92);
@@ -93,15 +94,15 @@
       max-width: var(--container);
       margin: 0 auto;
       padding: 0 var(--gutter);
-      box-sizing: border-box;
     }
 
+    /* ===== TOP BAR ===== */
     .topbar{ padding: 22px 0 14px; }
     .topbar-inner{
       display:flex;
-      align-items:center;              /* FIX: was flex-end */
+      align-items:center; /* FIX: consistent vertical alignment */
       justify-content:space-between;
-      gap: 20px;
+      gap: 16px;
     }
     .brand{
       font-size: 14px;
@@ -109,7 +110,6 @@
       text-transform: uppercase;
       color: var(--muted);
       white-space: nowrap;
-      line-height: 1;                  /* helps alignment */
     }
     .toplinks{
       display:flex;
@@ -120,7 +120,6 @@
       color: var(--muted);
       align-items: center;
       white-space: nowrap;
-      line-height: 1;                  /* helps alignment */
     }
     .rule{
       height:1px;
@@ -128,6 +127,7 @@
       margin-top: 14px;
     }
 
+    /* Theme toggle button */
     .theme-toggle{
       border: 1px solid var(--rule-soft);
       background: transparent;
@@ -137,10 +137,11 @@
       letter-spacing: .10em;
       text-transform: uppercase;
       cursor: pointer;
-      line-height: 1;                  /* crisp + aligned */
+      line-height: 1;
     }
     .theme-toggle:hover{ opacity: .85; }
 
+    /* ===== HERO ===== */
     .hero{
       padding: 34px 0 10px;
       text-align: center;
@@ -151,6 +152,7 @@
       letter-spacing: .01em;
       font-weight: 600;
       color: var(--head);
+      line-height: 1.08;
     }
     .hero p{
       margin: 10px auto 0;
@@ -168,13 +170,12 @@
       letter-spacing: .02em;
       color: var(--head);
     }
-
     .portrait-frame{
       margin: 28px auto 0;
       width: min(var(--hero-maxw), 92vw);
       aspect-ratio: var(--hero-aspect);
       border: 1px solid var(--rule-soft);
-      padding: var(--frame-pad);       /* FIX: responsive */
+      padding: 10px;
       background: var(--surface);
       box-sizing: border-box;
     }
@@ -191,6 +192,7 @@
 
     section{ padding: var(--section-pad) 0; }
 
+    /* Section headers: Title Case (no all-caps) */
     .section-title{
       margin: 0 0 16px;
       font-size: clamp(28px, 3vw, 40px);
@@ -222,7 +224,7 @@
       width: min(var(--side-img-maxw), 92vw);
       justify-self: end;
       border: 1px solid var(--rule-soft);
-      padding: var(--frame-pad);       /* FIX: responsive */
+      padding: 10px;
       background: var(--surface);
       box-sizing: border-box;
     }
@@ -239,6 +241,7 @@
     .side-img.ocean{ object-position: var(--ocean-object-position); }
     .side-img.desk{ object-position: var(--desk-object-position); }
 
+    /* ====== BULLETS ====== */
     .bullets{
       margin: 34px 0 0;
       padding: 0;
@@ -273,6 +276,7 @@
       max-width: 860px;
     }
 
+    /* ====== WHAT I WORK WITH ====== */
     .row.workwith{
       grid-template-columns: 1.05fr 0.95fr;
       align-items: start;
@@ -289,7 +293,7 @@
     .banner-img-frame{
       margin-top: 34px;
       border: 1px solid var(--rule-soft);
-      padding: var(--frame-pad);       /* FIX: responsive */
+      padding: 10px;
       background: var(--surface);
       box-sizing: border-box;
     }
@@ -310,6 +314,7 @@
 
     .banner-img.ocean{ object-position: var(--ocean-object-position); }
 
+    /* ====== HOW I WORK CARDS ====== */
     .cards{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -340,18 +345,6 @@
       line-height: 1.55;
     }
 
-    .aboutgrid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 0;
-      align-items:start;
-    }
-    .aboutcol{ padding-right: clamp(26px,4vw,56px); }
-    .contactcol{
-      padding-left: clamp(26px,4vw,56px);
-      border-left: 1px solid var(--rule-soft);
-    }
-
     footer{
       padding: 42px 0 56px;
       text-align:center;
@@ -359,41 +352,44 @@
       font-size: 16px;
     }
 
+    /* =========================
+       RESPONSIVE FIXES
+       Key idea: remove scaling on mobile so margins aren't huge.
+    ========================== */
     @media (max-width: 920px){
+      :root{
+        --page-scale: 1; /* FIX: kill the “giant side margins” on mobile */
+        --gutter: clamp(16px, 4vw, 22px); /* “in between” breathing room */
+      }
+
       .row, .row.reverse{ grid-template-columns: 1fr; }
       .row.workwith{ grid-template-columns: 1fr; }
       .bullets.bullets-side{ margin-top: 18px; }
       .side-img-frame, .row.reverse .side-img-frame{ justify-self: center; }
       .cards{ grid-template-columns: 1fr; }
       .cards.below-how{ grid-column: auto; }
+
       .toplinks{ gap: 12px; }
 
-      .aboutgrid{ grid-template-columns: 1fr; }
-      .aboutcol{ padding-right: 0; }
-      .contactcol{
-        margin-top: 36px;
-        padding-left: 0;
-        border-left: 0;
-        border-top: 1px solid var(--rule-soft);
-        padding-top: 30px;
-      }
+      /* frames feel less chunky on small screens */
+      .portrait-frame, .side-img-frame, .banner-img-frame{ padding: 8px; }
     }
 
-    /* Nav polish + thinner frames on small phones */
     @media (max-width: 520px){
-      :root{ --frame-pad: 7px; }       /* FIX: makes borders feel lighter */
-      .topbar{ padding: 18px 0 12px; }
       .brand{ font-size: 13px; }
-      .toplinks{ font-size: 13px; gap: 12px; }
-      .theme-toggle{ padding: 7px 10px; font-size: 12px; }
+      .toplinks{ font-size: 13px; }
+      .theme-toggle{ padding: 8px 10px; }
+
+      /* Hero title: smaller to avoid wrap */
+      .hero h1{
+        font-size: 38px;
+        letter-spacing: 0;
+      }
+      .hero p{ font-size: 18px; }
     }
 
     @media (max-width: 420px){
-      .hero h1{
-        font-size: 34px;
-        white-space: nowrap;
-      }
-      .hero p{ font-size: 18px; }
+      .hero h1{ font-size: 34px; }
     }
   </style>
 </head>
@@ -433,7 +429,7 @@
 
     <section>
       <div class="wrap">
-        <h2 class="section-title">What I work with</h2>
+        <h2 class="section-title">What I Work With</h2>
 
         <div class="row workwith">
           <div>
@@ -485,13 +481,13 @@
           </div>
 
           <div>
-            <h2 class="section-title">How I work</h2>
+            <h2 class="section-title">How I Work</h2>
 
             <p class="lede">
               My work is grounded, methodical, and individualized. I take time to listen, assess patterns,
               and adjust based on real response — not protocols alone.
             </p>
-
+            
             <p class="lede">
               This favors consistency over intensity. Small, well-timed inputs create stability —
               and stability is what allows deeper healing without pushing your system.
@@ -559,8 +555,8 @@
 
         <div style="height:1px;background:var(--rule-soft);margin:54px 0;"></div>
 
-        <div class="aboutgrid">
-          <div class="aboutcol">
+        <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:0;align-items:start;">
+          <div style="padding-right:clamp(26px,4vw,56px);">
             <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;color:var(--head);">About</h3>
 
             <p class="lede">
@@ -578,7 +574,7 @@
             </p>
           </div>
 
-          <div class="contactcol">
+          <div style="padding-left:clamp(26px,4vw,56px);border-left:1px solid var(--rule-soft);">
             <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;color:var(--head);">Contact</h3>
 
             <p style="margin:0;color:var(--muted);font-size:20px;line-height:1.6;">
@@ -598,21 +594,29 @@
   </footer>
 
   <script>
+    // year
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // fix extra scroll caused by transform: scale()
     function fixScaledMainGap(){
       const main = document.querySelector("main");
       if(!main) return;
 
       const rootStyles = getComputedStyle(document.documentElement);
-      const scale = parseFloat(rootStyles.getPropertyValue("--page-scale")) || 0.75;
+      const scale = parseFloat(rootStyles.getPropertyValue("--page-scale")) || 1;
+
+      // If scale is 1, no gap to fix.
+      if (scale === 1){
+        main.style.marginBottom = "0px";
+        return;
+      }
 
       const full = main.scrollHeight;
       const ghost = full * (1 - scale);
-
       main.style.marginBottom = `-${ghost}px`;
     }
 
+    // theme toggle (default = dark)
     (function initTheme(){
       const root = document.documentElement;
       const btn = document.getElementById("themeToggle");
@@ -635,7 +639,7 @@
 
       const saved = getSaved();
       if(saved === "light") setTheme("light");
-      else setTheme("dark");
+      else setTheme("dark"); // default
 
       if(btn){
         btn.addEventListener("click", function(){
