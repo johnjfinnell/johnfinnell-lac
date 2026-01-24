@@ -25,10 +25,16 @@
       --ink: rgba(238,231,221,.88);
       --body: rgba(232,222,209,.78);
       --muted: rgba(214,205,192,.66);
-      --rule: rgba(214,205,192,.18);
 
+      /* outlines */
+      --rule: rgba(214,205,192,.18);
+      --rule-soft: rgba(214,205,192,.10);
+
+      /* warm, subtle surfaces (frames/cards) */
       --surface: rgba(238,231,221,.055);
       --surface-2: rgba(238,231,221,.045);
+
+      /* warm image stroke */
       --img-stroke: rgba(238,231,221,.14);
 
       --container: 1080px;
@@ -57,10 +63,13 @@
       --ink: rgba(27,27,27,.92);
       --body: rgba(27,27,27,.86);
       --muted: rgba(92,92,92,.86);
+
       --rule: rgba(0,0,0,.18);
+      --rule-soft: rgba(0,0,0,.10);
 
       --surface: rgba(255,255,255,.25);
       --surface-2: rgba(255,255,255,.18);
+
       --img-stroke: rgba(0,0,0,.14);
     }
 
@@ -110,13 +119,13 @@
     }
     .rule{
       height:1px;
-      background: var(--rule);
+      background: var(--rule-soft);
       margin-top: 14px;
     }
 
     /* Theme toggle button */
     .theme-toggle{
-      border: 1px solid var(--rule);
+      border: 1px solid var(--rule-soft);
       background: transparent;
       color: var(--muted);
       padding: 8px 12px;
@@ -149,7 +158,7 @@
       display:inline-block;
       margin-top: 22px;
       padding: 12px 18px;
-      border: 1px solid var(--rule);
+      border: 1px solid var(--rule-soft);
       background: transparent;
       font-size: 20px;
       letter-spacing: .02em;
@@ -159,7 +168,7 @@
       margin: 28px auto 0;
       width: min(var(--hero-maxw), 92vw);
       aspect-ratio: var(--hero-aspect);
-      border: 1px solid var(--rule);
+      border: 1px solid var(--rule-soft);
       padding: 10px;
       background: var(--surface);
       box-sizing: border-box;
@@ -205,7 +214,7 @@
     .side-img-frame{
       width: min(var(--side-img-maxw), 92vw);
       justify-self: end;
-      border: 1px solid var(--rule);
+      border: 1px solid var(--rule-soft);
       padding: 10px;
       background: var(--surface);
       box-sizing: border-box;
@@ -274,7 +283,7 @@
 
     .banner-img-frame{
       margin-top: 34px;
-      border: 1px solid var(--rule);
+      border: 1px solid var(--rule-soft);
       padding: 10px;
       background: var(--surface);
       box-sizing: border-box;
@@ -309,7 +318,7 @@
     }
 
     .card{
-      border: 1px solid var(--rule);
+      border: 1px solid var(--rule-soft);
       padding: 18px 18px 20px;
       background: var(--surface-2);
     }
@@ -353,8 +362,11 @@
         <div class="brand">John Finnell, LAc</div>
 
         <nav class="toplinks" aria-label="Top navigation">
-          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">Light</button>
+          <!-- Contact first (primary action) -->
           <a href="#contact">Contact</a>
+
+          <!-- Toggle furthest right -->
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">Light</button>
         </nav>
       </div>
       <div class="rule"></div>
@@ -366,13 +378,11 @@
       <div class="wrap">
         <h1>John Finnell, LAc</h1>
 
-        <!-- UPDATED HERO COPY (signals safety + clarity) -->
         <p>
           Acupuncture &amp; holistic medicine for nervous system regulation, hormones, digestion,
           and stress-related conditions — steady, calm, and collaborative.
         </p>
 
-        <!-- CTA language slightly softer -->
         <a class="hero-cta" href="#contact">Book a consult</a>
 
         <div class="portrait-frame" aria-label="Portrait of John Finnell">
@@ -437,7 +447,6 @@
           <div>
             <h2 class="section-title">How I Work</h2>
 
-            <!-- UPDATED COPY (less intense, more regulating) -->
             <p class="lede">
               My work is grounded, methodical, and individualized. I take time to listen, assess patterns,
               and adjust based on real response — not protocols alone.
@@ -508,7 +517,7 @@
           — Male, Baker
         </div>
 
-        <div style="height:1px;background:var(--rule);margin:54px 0;"></div>
+        <div style="height:1px;background:var(--rule-soft);margin:54px 0;"></div>
 
         <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:0;align-items:start;">
           <div style="padding-right:clamp(26px,4vw,56px);">
@@ -529,7 +538,7 @@
             </p>
           </div>
 
-          <div style="padding-left:clamp(26px,4vw,56px);border-left:1px solid var(--rule);">
+          <div style="padding-left:clamp(26px,4vw,56px);border-left:1px solid var(--rule-soft);">
             <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;color:var(--head);">Contact</h3>
 
             <p style="margin:0;color:var(--muted);font-size:20px;line-height:1.6;">
