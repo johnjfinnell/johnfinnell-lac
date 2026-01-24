@@ -12,16 +12,24 @@
       transform-origin: top center;
     }
 
+    /* =========================
+       THEME TOKENS (DEFAULT = DARK)
+       We'll swap <html data-theme="light"> via JS.
+    ========================== */
     :root{
       --page-scale: 0.75;
 
-      /* ===== WARM DARK THEME (charcoal + warm greys) ===== */
-      --bg: #141210;                   /* warm charcoal */
-      --head: rgba(232,222,209,.84);   /* headings: warm grey (not white) */
-      --ink: rgba(238,231,221,.88);    /* primary text (still soft) */
-      --body: rgba(232,222,209,.78);   /* body paragraphs */
-      --muted: rgba(214,205,192,.66);  /* secondary text */
-      --rule: rgba(214,205,192,.18);   /* dividers + borders */
+      /* DARK (default) */
+      --bg: #141210;
+      --head: rgba(232,222,209,.84);
+      --ink: rgba(238,231,221,.88);
+      --body: rgba(232,222,209,.78);
+      --muted: rgba(214,205,192,.66);
+      --rule: rgba(214,205,192,.18);
+
+      --surface: rgba(238,231,221,.055);
+      --surface-2: rgba(238,231,221,.045);
+      --img-stroke: rgba(238,231,221,.14);
 
       --container: 1080px;
       --gutter: clamp(18px, 3vw, 36px);
@@ -34,20 +42,26 @@
       --side-img-maxw: 460px;
       --side-img-aspect: 3 / 4;
 
-      /* Cropping (2nd value = vertical) */
       --ocean-object-position: 50% 62%;
       --desk-object-position: 50% 50%;
 
       --section-pad: clamp(44px, 6vw, 86px);
       --row-gap: clamp(22px, 4vw, 40px);
       --col-gap: clamp(26px, 5vw, 60px);
+    }
 
-      /* warm, subtle surfaces (frames/cards) */
-      --surface: rgba(238,231,221,.055);
-      --surface-2: rgba(238,231,221,.045);
+    /* LIGHT THEME OVERRIDES */
+    html[data-theme="light"]{
+      --bg: #f5f2ee;
+      --head: rgba(27,27,27,.92);
+      --ink: rgba(27,27,27,.92);
+      --body: rgba(27,27,27,.86);
+      --muted: rgba(92,92,92,.86);
+      --rule: rgba(0,0,0,.18);
 
-      /* warm image stroke */
-      --img-stroke: rgba(238,231,221,.14);
+      --surface: rgba(255,255,255,.25);
+      --surface-2: rgba(255,255,255,.18);
+      --img-stroke: rgba(0,0,0,.14);
     }
 
     html { scroll-behavior: smooth; }
@@ -100,6 +114,20 @@
       margin-top: 14px;
     }
 
+    /* Theme toggle button */
+    .theme-toggle{
+      border: 1px solid var(--rule);
+      background: transparent;
+      color: var(--muted);
+      padding: 8px 12px;
+      font-size: 13px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .theme-toggle:hover{ opacity: .85; }
+
     .hero{
       padding: 34px 0 10px;
       text-align: center;
@@ -109,11 +137,11 @@
       font-size: clamp(42px, 5vw, 64px);
       letter-spacing: .01em;
       font-weight: 600;
-      color: var(--head); /* softened heading */
+      color: var(--head);
     }
     .hero p{
       margin: 10px auto 0;
-      max-width: 720px;
+      max-width: 760px;
       font-size: clamp(19px, 2.2vw, 26px);
       color: var(--muted);
     }
@@ -154,12 +182,12 @@
       letter-spacing: .06em;
       text-transform: uppercase;
       font-weight: 600;
-      color: var(--head); /* softened heading */
+      color: var(--head);
     }
     .lede{
       margin: 0;
       font-size: clamp(20px, 2.2vw, 28px);
-      color: var(--body); /* softened body blocks */
+      color: var(--body);
       max-width: 70ch;
     }
     .lede + .lede{ margin-top: 18px; }
@@ -217,7 +245,7 @@
       width: 30px;
       flex: 0 0 30px;
       height: 2px;
-      background: rgba(214,205,192,.28);
+      background: color-mix(in srgb, var(--muted) 45%, transparent);
       margin-top: 0.85em;
     }
 
@@ -242,10 +270,7 @@
       flex-direction: column;
       gap: 18px;
     }
-
-    .bullets.bullets-side li{
-      margin: 0;
-    }
+    .bullets.bullets-side li{ margin: 0; }
 
     .banner-img-frame{
       margin-top: 34px;
@@ -269,9 +294,7 @@
       border: 1px solid var(--img-stroke);
     }
 
-    .banner-img.ocean{
-      object-position: var(--ocean-object-position);
-    }
+    .banner-img.ocean{ object-position: var(--ocean-object-position); }
 
     /* ====== HOW I WORK CARDS ====== */
     .cards{
@@ -318,6 +341,7 @@
       .side-img-frame, .row.reverse .side-img-frame{ justify-self: center; }
       .cards{ grid-template-columns: 1fr; }
       .cards.below-how{ grid-column: auto; }
+      .toplinks{ gap: 12px; }
     }
   </style>
 </head>
@@ -329,6 +353,7 @@
         <div class="brand">John Finnell, LAc</div>
 
         <nav class="toplinks" aria-label="Top navigation">
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">Light</button>
           <a href="#contact">Contact</a>
         </nav>
       </div>
@@ -340,12 +365,15 @@
     <section class="hero" id="work-with-me">
       <div class="wrap">
         <h1>John Finnell, LAc</h1>
+
+        <!-- UPDATED HERO COPY (signals safety + clarity) -->
         <p>
-          Acupuncture &amp; holistic medicine for nervous system regulation,
-          hormones, digestion, and stress-related conditions.
+          Acupuncture &amp; holistic medicine for nervous system regulation, hormones, digestion,
+          and stress-related conditions — steady, calm, and collaborative.
         </p>
 
-        <a class="hero-cta" href="#contact">Work With Me</a>
+        <!-- CTA language slightly softer -->
+        <a class="hero-cta" href="#contact">Book a consult</a>
 
         <div class="portrait-frame" aria-label="Portrait of John Finnell">
           <img class="portrait" src="johnfinnell-portrait-1.png" alt="John Finnell portrait" />
@@ -361,13 +389,13 @@
           <div>
             <p class="lede">
               Most people I work with don’t have just one issue — they have patterns. Stress, hormones,
-              digestion, sleep, and energy are all part of the same system, and symptoms tend to show up
+              digestion, sleep, and energy are part of the same system, and symptoms tend to show up
               where the system is under the most strain.
             </p>
 
             <p class="lede">
               These symptoms are often connected. My role is to help identify patterns beneath them
-              and support the body’s ability to regulate over time.
+              and support your body’s ability to regulate over time — at a pace your system can handle.
             </p>
           </div>
 
@@ -409,14 +437,15 @@
           <div>
             <h2 class="section-title">How I Work</h2>
 
+            <!-- UPDATED COPY (less intense, more regulating) -->
             <p class="lede">
               My work is grounded, methodical, and individualized. I take time to listen, assess patterns,
-              and adjust treatment based on real response — not protocols alone.
+              and adjust based on real response — not protocols alone.
             </p>
             
             <p class="lede">
-              This work favors consistency over intensity. Small, well-timed inputs create stability,
-              and stability is what allows deeper healing to happen without forcing the system.
+              This favors consistency over intensity. Small, well-timed inputs create stability —
+              and stability is what allows deeper healing without pushing your system.
             </p>
 
             <p class="lede">
@@ -461,21 +490,21 @@
         <div style="max-width:820px;margin:26px auto 0;text-align:left;font-size:clamp(22px,2.4vw,30px);color:var(--muted);font-style:italic;">
           “Seeing John as a practitioner is a true partnership for your health… I highly recommend John Finnell… and have total confidence in his ability to provide the highest level of care.”
         </div>
-        <div style="max-width:820px;margin:10px auto 0;text-align:left;color:rgba(214,205,192,.56);font-size:18px;letter-spacing:.10em;text-transform:uppercase;">
+        <div style="max-width:820px;margin:10px auto 0;text-align:left;color:color-mix(in srgb, var(--muted) 80%, transparent);font-size:18px;letter-spacing:.10em;text-transform:uppercase;">
           — Female, Registered Nurse
         </div>
 
         <div style="max-width:820px;margin:26px auto 0;text-align:left;font-size:clamp(22px,2.4vw,30px);color:var(--muted);font-style:italic;">
           “I’ve had chronic migraines… for over 20 years… I’ve not had a migraine since beginning treatment.”
         </div>
-        <div style="max-width:820px;margin:10px auto 0;text-align:left;color:rgba(214,205,192,.56);font-size:18px;letter-spacing:.10em;text-transform:uppercase;">
+        <div style="max-width:820px;margin:10px auto 0;text-align:left;color:color-mix(in srgb, var(--muted) 80%, transparent);font-size:18px;letter-spacing:.10em;text-transform:uppercase;">
           — Female, Realtor
         </div>
 
         <div style="max-width:820px;margin:26px auto 0;text-align:left;font-size:clamp(22px,2.4vw,30px);color:var(--muted);font-style:italic;">
           “Beyond the efficacy of his tools… John applies the greatest factor that any practitioner can utilize: Compassion. This cannot be overstated… Work with John, and you will be working with a true healer.”
         </div>
-        <div style="max-width:820px;margin:10px auto 0;text-align:left;color:rgba(214,205,192,.56);font-size:18px;letter-spacing:.10em;text-transform:uppercase;">
+        <div style="max-width:820px;margin:10px auto 0;text-align:left;color:color-mix(in srgb, var(--muted) 80%, transparent);font-size:18px;letter-spacing:.10em;text-transform:uppercase;">
           — Male, Baker
         </div>
 
@@ -520,8 +549,10 @@
   </footer>
 
   <script>
+    // year
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // fix extra scroll caused by transform: scale()
     function fixScaledMainGap(){
       const main = document.querySelector("main");
       if(!main) return;
@@ -534,6 +565,40 @@
 
       main.style.marginBottom = `-${ghost}px`;
     }
+
+    // theme toggle (default = dark)
+    (function initTheme(){
+      const root = document.documentElement;
+      const btn = document.getElementById("themeToggle");
+      const key = "jf_theme";
+
+      function setTheme(theme){
+        if(theme === "light"){
+          root.setAttribute("data-theme", "light");
+          if(btn) btn.textContent = "Dark";
+        }else{
+          root.removeAttribute("data-theme");
+          if(btn) btn.textContent = "Light";
+        }
+        try{ localStorage.setItem(key, theme); }catch(e){}
+      }
+
+      function getSaved(){
+        try{ return localStorage.getItem(key); }catch(e){ return null; }
+      }
+
+      const saved = getSaved();
+      if(saved === "light") setTheme("light");
+      else setTheme("dark"); // default
+
+      if(btn){
+        btn.addEventListener("click", function(){
+          const isLight = root.getAttribute("data-theme") === "light";
+          setTheme(isLight ? "dark" : "light");
+          fixScaledMainGap();
+        });
+      }
+    })();
 
     window.addEventListener("load", fixScaledMainGap);
     window.addEventListener("resize", fixScaledMainGap);
