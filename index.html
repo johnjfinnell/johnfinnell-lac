@@ -98,16 +98,15 @@
     .topbar{ padding: 22px 0 14px; }
     .topbar-inner{
       display:flex;
-      align-items: center; /* FIX: keeps nav aligned on mobile too */
+      align-items:flex-end;
       justify-content:space-between;
-      gap: 16px;
+      gap: 20px;
     }
     .brand{
       font-size: 14px;
       letter-spacing: .10em;
       text-transform: uppercase;
       color: var(--muted);
-      white-space: nowrap;
     }
     .toplinks{
       display:flex;
@@ -117,7 +116,6 @@
       text-transform: uppercase;
       color: var(--muted);
       align-items: center;
-      white-space: nowrap;
     }
     .rule{
       height:1px;
@@ -187,14 +185,17 @@
     }
 
     section{ padding: var(--section-pad) 0; }
+
+    /* UPDATED: Title Case + softer tracking (no forced uppercase) */
     .section-title{
       margin: 0 0 16px;
       font-size: clamp(28px, 3vw, 40px);
-      letter-spacing: .06em;
-      text-transform: uppercase;
+      letter-spacing: .02em;
+      text-transform: none;
       font-weight: 600;
       color: var(--head);
     }
+
     .lede{
       margin: 0;
       font-size: clamp(20px, 2.2vw, 28px);
@@ -338,42 +339,6 @@
       line-height: 1.55;
     }
 
-    /* ====== ABOUT / CONTACT (CLASS-BASED) ====== */
-    .about-grid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 0;
-      align-items:start;
-    }
-    .about-col{
-      padding-right: clamp(26px,4vw,56px);
-    }
-    .contact-col{
-      padding-left: clamp(26px,4vw,56px);
-      border-left: 1px solid var(--rule-soft);
-    }
-    .about-title{
-      margin:0 0 14px;
-      font-size:clamp(44px,5vw,70px);
-      font-weight:600;
-      letter-spacing:.01em;
-      color:var(--head);
-    }
-    .contact-text{
-      margin:0;
-      color:var(--muted);
-      font-size:20px;
-      line-height:1.6;
-    }
-    .contact-strong{
-      color:var(--head);
-      font-weight:600;
-    }
-    .contact-link{
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-
     footer{
       padding: 42px 0 56px;
       text-align:center;
@@ -381,31 +346,10 @@
       font-size: 16px;
     }
 
-    /* =========================
-       MOBILE FIXES
-    ========================== */
     @media (max-width: 920px){
-      :root{
-        --page-scale: 1; /* IMPORTANT: stops the site looking tiny on mobile */
-        --gutter: clamp(21px, 4.8vw, 28px);
-      }
-
-      .topbar{ padding: 14px 0 10px; }
-
-      .topbar-inner{
-        align-items: center;
-        gap: 12px;
-      }
-
-      .toplinks{
-        gap: 10px;
-        font-size: 12px;
-        letter-spacing: .08em;
-      }
-
-      .theme-toggle{
-        padding: 7px 10px;
-        font-size: 12px;
+      /* UPDATED: disable global scaling on mobile to prevent iOS “drift” */
+      main{
+        transform: none;
       }
 
       .row, .row.reverse{ grid-template-columns: 1fr; }
@@ -414,29 +358,8 @@
       .side-img-frame, .row.reverse .side-img-frame{ justify-self: center; }
       .cards{ grid-template-columns: 1fr; }
       .cards.below-how{ grid-column: auto; }
-
-      /* About/Contact stack cleanly */
-      .about-grid{
-        grid-template-columns: 1fr;
-        gap: 28px;
-      }
-      .about-col{ padding-right: 0; }
-      .contact-col{
-        padding-left: 0;
-        border-left: 0;
-        border-top: 1px solid var(--rule-soft);
-        padding-top: 22px;
-      }
+      .toplinks{ gap: 12px; }
     }
-
-   @media (max-width: 420px){
-  .hero h1{
-    font-size: 34px;
-    white-space: nowrap;
-    letter-spacing: .005em;
-  }
-  .hero p{ font-size: 18px; }
-}
   </style>
 </head>
 
@@ -447,7 +370,10 @@
         <div class="brand">John Finnell, LAc</div>
 
         <nav class="toplinks" aria-label="Top navigation">
+          <!-- Contact first (primary action) -->
           <a href="#contact">Contact</a>
+
+          <!-- Toggle furthest right -->
           <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">Light</button>
         </nav>
       </div>
@@ -458,7 +384,7 @@
   <main>
     <section class="hero" id="work-with-me">
       <div class="wrap">
-        <h1>John Finnell,&nbsp;LAc</h1>
+        <h1>John Finnell, LAc</h1>
 
         <p>
           Acupuncture &amp; holistic medicine for nervous system regulation, hormones, digestion,
@@ -601,9 +527,9 @@
 
         <div style="height:1px;background:var(--rule-soft);margin:54px 0;"></div>
 
-        <div class="about-grid">
-          <div class="about-col">
-            <h3 class="about-title">About</h3>
+        <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:0;align-items:start;">
+          <div style="padding-right:clamp(26px,4vw,56px);">
+            <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;color:var(--head);">About</h3>
 
             <p class="lede">
               I’m a licensed acupuncturist with years of experience working with complex,
@@ -620,12 +546,12 @@
             </p>
           </div>
 
-          <div class="contact-col">
-            <h3 class="about-title">Contact</h3>
+          <div style="padding-left:clamp(26px,4vw,56px);border-left:1px solid var(--rule-soft);">
+            <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;color:var(--head);">Contact</h3>
 
-            <p class="contact-text">
-              Text to book: <strong class="contact-strong">951-638-3932</strong><br />
-              Email: <a href="mailto:wellness@johnfinnell.com" class="contact-link">wellness@johnfinnell.com</a>
+            <p style="margin:0;color:var(--muted);font-size:20px;line-height:1.6;">
+              Text to book: <strong style="color:var(--head);font-weight:600;">951-638-3932</strong><br />
+              Email: <a href="mailto:wellness@johnfinnell.com" style="text-decoration:underline;text-underline-offset:4px;">wellness@johnfinnell.com</a>
             </p>
           </div>
         </div>
@@ -648,8 +574,14 @@
       const main = document.querySelector("main");
       if(!main) return;
 
+      // UPDATED: don’t apply the scale-gap hack on mobile (since we disable scaling there)
+      if(window.innerWidth <= 920){
+        main.style.marginBottom = "0px";
+        return;
+      }
+
       const rootStyles = getComputedStyle(document.documentElement);
-      const scale = parseFloat(rootStyles.getPropertyValue("--page-scale")) || 1;
+      const scale = parseFloat(rootStyles.getPropertyValue("--page-scale")) || 0.75;
 
       const full = main.scrollHeight;
       const ghost = full * (1 - scale);
@@ -680,7 +612,7 @@
 
       const saved = getSaved();
       if(saved === "light") setTheme("light");
-      else setTheme("dark");
+      else setTheme("dark"); // default
 
       if(btn){
         btn.addEventListener("click", function(){
