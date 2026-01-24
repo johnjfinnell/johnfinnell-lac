@@ -242,6 +242,12 @@
       box-sizing: border-box;
     }
 
+    .banner-img-frame.work-with-image{
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: none;
+}
+
     .banner-img{
       width: 110%;
       aspect-ratio: 16 / 8; /* taller so it doesn’t become “sky only” */
@@ -363,13 +369,13 @@
           </div>
         </div>
 
-        <div class="banner-img-frame">
-          <img
-            class="banner-img ocean"
-            src="assets/what-i-work-with-hands-bw.png"
-            alt="Calm ocean and mountains"
-          />
-        </div>
+       <div class="banner-img-frame work-with-image">
+  <img
+    class="banner-img ocean"
+    src="assets/what-i-work-with-hands-bw.png"
+    alt="Hands during acupuncture session"
+  />
+</div>
 
         <div class="quote">
           I focus on understanding <em>why</em> symptoms are happening — not just managing them.
