@@ -12,10 +12,6 @@
       width: 100%;
     }
 
-    /* =========================
-       THEME TOKENS (DEFAULT = DARK)
-       We'll swap <html data-theme="light"> via JS.
-    ========================== */
     :root{
       --page-scale: 0.75;
 
@@ -39,8 +35,11 @@
 
       --container: 1080px;
 
-      /* a touch more breathing room on mobile */
-      --gutter: clamp(20px, 4vw, 40px);
+      /* breathing room */
+      --gutter: clamp(18px, 3.6vw, 40px);
+
+      /* FRAME padding (this is what felt “too thick” on mobile) */
+      --frame-pad: 10px;
 
       --hero-maxw: 640px;
       --hero-aspect: 4 / 5;
@@ -58,7 +57,6 @@
       --col-gap: clamp(26px, 5vw, 60px);
     }
 
-    /* LIGHT THEME OVERRIDES */
     html[data-theme="light"]{
       --bg: #f5f2ee;
       --head: rgba(27,27,27,.92);
@@ -101,7 +99,7 @@
     .topbar{ padding: 22px 0 14px; }
     .topbar-inner{
       display:flex;
-      align-items:flex-end;
+      align-items:center;              /* FIX: was flex-end */
       justify-content:space-between;
       gap: 20px;
     }
@@ -111,6 +109,7 @@
       text-transform: uppercase;
       color: var(--muted);
       white-space: nowrap;
+      line-height: 1;                  /* helps alignment */
     }
     .toplinks{
       display:flex;
@@ -121,6 +120,7 @@
       color: var(--muted);
       align-items: center;
       white-space: nowrap;
+      line-height: 1;                  /* helps alignment */
     }
     .rule{
       height:1px;
@@ -128,7 +128,6 @@
       margin-top: 14px;
     }
 
-    /* Theme toggle button */
     .theme-toggle{
       border: 1px solid var(--rule-soft);
       background: transparent;
@@ -138,7 +137,7 @@
       letter-spacing: .10em;
       text-transform: uppercase;
       cursor: pointer;
-      line-height: 1;
+      line-height: 1;                  /* crisp + aligned */
     }
     .theme-toggle:hover{ opacity: .85; }
 
@@ -170,13 +169,12 @@
       color: var(--head);
     }
 
-    /* Helps prevent any “looks off-center” weirdness from rounding */
     .portrait-frame{
       margin: 28px auto 0;
-      width: min(var(--hero-maxw), 94vw);
+      width: min(var(--hero-maxw), 92vw);
       aspect-ratio: var(--hero-aspect);
       border: 1px solid var(--rule-soft);
-      padding: 10px;
+      padding: var(--frame-pad);       /* FIX: responsive */
       background: var(--surface);
       box-sizing: border-box;
     }
@@ -193,7 +191,6 @@
 
     section{ padding: var(--section-pad) 0; }
 
-    /* Make section headers Initial Cap (no all-caps) */
     .section-title{
       margin: 0 0 16px;
       font-size: clamp(28px, 3vw, 40px);
@@ -222,10 +219,10 @@
     }
 
     .side-img-frame{
-      width: min(var(--side-img-maxw), 94vw);
+      width: min(var(--side-img-maxw), 92vw);
       justify-self: end;
       border: 1px solid var(--rule-soft);
-      padding: 10px;
+      padding: var(--frame-pad);       /* FIX: responsive */
       background: var(--surface);
       box-sizing: border-box;
     }
@@ -242,7 +239,6 @@
     .side-img.ocean{ object-position: var(--ocean-object-position); }
     .side-img.desk{ object-position: var(--desk-object-position); }
 
-    /* ====== BULLETS ====== */
     .bullets{
       margin: 34px 0 0;
       padding: 0;
@@ -277,7 +273,6 @@
       max-width: 860px;
     }
 
-    /* ====== WHAT I WORK WITH ====== */
     .row.workwith{
       grid-template-columns: 1.05fr 0.95fr;
       align-items: start;
@@ -294,7 +289,7 @@
     .banner-img-frame{
       margin-top: 34px;
       border: 1px solid var(--rule-soft);
-      padding: 10px;
+      padding: var(--frame-pad);       /* FIX: responsive */
       background: var(--surface);
       box-sizing: border-box;
     }
@@ -315,7 +310,6 @@
 
     .banner-img.ocean{ object-position: var(--ocean-object-position); }
 
-    /* ====== HOW I WORK CARDS ====== */
     .cards{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -346,7 +340,6 @@
       line-height: 1.55;
     }
 
-    /* ====== ABOUT / CONTACT ====== */
     .aboutgrid{
       display:grid;
       grid-template-columns: 1.1fr .9fr;
@@ -375,7 +368,6 @@
       .cards.below-how{ grid-column: auto; }
       .toplinks{ gap: 12px; }
 
-      /* Stack About/Contact on mobile (fix the narrow newspaper columns) */
       .aboutgrid{ grid-template-columns: 1fr; }
       .aboutcol{ padding-right: 0; }
       .contactcol{
@@ -387,15 +379,21 @@
       }
     }
 
-    /* Extra-small phones: keep hero title on one line */
+    /* Nav polish + thinner frames on small phones */
+    @media (max-width: 520px){
+      :root{ --frame-pad: 7px; }       /* FIX: makes borders feel lighter */
+      .topbar{ padding: 18px 0 12px; }
+      .brand{ font-size: 13px; }
+      .toplinks{ font-size: 13px; gap: 12px; }
+      .theme-toggle{ padding: 7px 10px; font-size: 12px; }
+    }
+
     @media (max-width: 420px){
       .hero h1{
         font-size: 34px;
         white-space: nowrap;
       }
       .hero p{ font-size: 18px; }
-      /* tiny nudge for perceived portrait centering on narrow screens */
-      :root{ --hero-object-position: 49% 18%; }
     }
   </style>
 </head>
@@ -600,10 +598,8 @@
   </footer>
 
   <script>
-    // year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // fix extra scroll caused by transform: scale()
     function fixScaledMainGap(){
       const main = document.querySelector("main");
       if(!main) return;
@@ -617,7 +613,6 @@
       main.style.marginBottom = `-${ghost}px`;
     }
 
-    // theme toggle (default = dark)
     (function initTheme(){
       const root = document.documentElement;
       const btn = document.getElementById("themeToggle");
