@@ -375,6 +375,19 @@
       .portrait-frame, .side-img-frame, .banner-img-frame{ padding: 8px; }
     }
 
+    @media (max-width: 720px){
+  .about-contact-grid{
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+
+  .about-contact-right{
+    border-left: 0 !important;
+    padding-left: 0 !important;
+    margin-top: 6px;
+  }
+}
+
     @media (max-width: 520px){
       .brand{ font-size: 13px; }
       .toplinks{ font-size: 13px; }
@@ -555,7 +568,7 @@
 
         <div style="height:1px;background:var(--rule-soft);margin:54px 0;"></div>
 
-        <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:0;align-items:start;">
+<div class="about-contact-grid" style="display:grid;grid-template-columns:1.1fr .9fr;gap:0;align-items:start;">
           <div style="padding-right:clamp(26px,4vw,56px);">
             <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;color:var(--head);">About</h3>
 
@@ -574,7 +587,7 @@
             </p>
           </div>
 
-          <div style="padding-left:clamp(26px,4vw,56px);border-left:1px solid var(--rule-soft);">
+<div class="about-contact-right" style="padding-left:clamp(26px,4vw,56px);border-left:1px solid var(--rule-soft);">
             <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;color:var(--head);">Contact</h3>
 
             <p style="margin:0;color:var(--muted);font-size:20px;line-height:1.6;">
