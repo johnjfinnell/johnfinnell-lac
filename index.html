@@ -16,10 +16,12 @@
       --page-scale: 0.75;
 
       /* ===== WARM DARK THEME (charcoal + warm greys) ===== */
---bg: #141210;                  /* warm charcoal (not pure black) */
---ink: rgba(238,231,221,.88);   /* light warm grey (not white) */
---muted: rgba(214,205,192,.66); /* softer secondary warm grey */
---rule: rgba(214,205,192,.18);  /* warm borders/dividers */
+      --bg: #141210;                   /* warm charcoal */
+      --head: rgba(232,222,209,.84);   /* headings: warm grey (not white) */
+      --ink: rgba(238,231,221,.88);    /* primary text (still soft) */
+      --body: rgba(232,222,209,.78);   /* body paragraphs */
+      --muted: rgba(214,205,192,.66);  /* secondary text */
+      --rule: rgba(214,205,192,.18);   /* dividers + borders */
 
       --container: 1080px;
       --gutter: clamp(18px, 3vw, 36px);
@@ -32,6 +34,7 @@
       --side-img-maxw: 460px;
       --side-img-aspect: 3 / 4;
 
+      /* Cropping (2nd value = vertical) */
       --ocean-object-position: 50% 62%;
       --desk-object-position: 50% 50%;
 
@@ -40,11 +43,11 @@
       --col-gap: clamp(26px, 5vw, 60px);
 
       /* warm, subtle surfaces (frames/cards) */
-      --surface: rgba(245,238,228,.055);
-      --surface-2: rgba(245,238,228,.045);
+      --surface: rgba(238,231,221,.055);
+      --surface-2: rgba(238,231,221,.045);
 
       /* warm image stroke */
-      --img-stroke: rgba(245,238,228,.14);
+      --img-stroke: rgba(238,231,221,.14);
     }
 
     html { scroll-behavior: smooth; }
@@ -106,7 +109,7 @@
       font-size: clamp(42px, 5vw, 64px);
       letter-spacing: .01em;
       font-weight: 600;
-      color: var(--head);
+      color: var(--head); /* softened heading */
     }
     .hero p{
       margin: 10px auto 0;
@@ -122,6 +125,7 @@
       background: transparent;
       font-size: 20px;
       letter-spacing: .02em;
+      color: var(--head);
     }
     .portrait-frame{
       margin: 28px auto 0;
@@ -150,11 +154,12 @@
       letter-spacing: .06em;
       text-transform: uppercase;
       font-weight: 600;
+      color: var(--head); /* softened heading */
     }
     .lede{
       margin: 0;
       font-size: clamp(20px, 2.2vw, 28px);
-      color: var(--ink);
+      color: var(--body); /* softened body blocks */
       max-width: 70ch;
     }
     .lede + .lede{ margin-top: 18px; }
@@ -212,7 +217,7 @@
       width: 30px;
       flex: 0 0 30px;
       height: 2px;
-      background: rgba(232,222,209,.28);
+      background: rgba(214,205,192,.28);
       margin-top: 0.85em;
     }
 
@@ -290,7 +295,7 @@
       font-size: 24px;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: var(--ink);
+      color: var(--head);
     }
     .card p{
       margin: 0;
@@ -449,28 +454,28 @@
 
     <section id="contact">
       <div class="wrap">
-        <h2 style="text-align:center;margin:0 0 18px;font-size:clamp(44px,5vw,64px);font-weight:600;letter-spacing:.01em;">
+        <h2 style="text-align:center;margin:0 0 18px;font-size:clamp(44px,5vw,64px);font-weight:600;letter-spacing:.01em;color:var(--head);">
           Testimonials
         </h2>
 
         <div style="max-width:820px;margin:26px auto 0;text-align:left;font-size:clamp(22px,2.4vw,30px);color:var(--muted);font-style:italic;">
           “Seeing John as a practitioner is a true partnership for your health… I highly recommend John Finnell… and have total confidence in his ability to provide the highest level of care.”
         </div>
-        <div style="max-width:820px;margin:10px auto 0;text-align:left;color:rgba(232,222,209,.56);font-size:18px;letter-spacing:.10em;text-transform:uppercase;">
+        <div style="max-width:820px;margin:10px auto 0;text-align:left;color:rgba(214,205,192,.56);font-size:18px;letter-spacing:.10em;text-transform:uppercase;">
           — Female, Registered Nurse
         </div>
 
         <div style="max-width:820px;margin:26px auto 0;text-align:left;font-size:clamp(22px,2.4vw,30px);color:var(--muted);font-style:italic;">
           “I’ve had chronic migraines… for over 20 years… I’ve not had a migraine since beginning treatment.”
         </div>
-        <div style="max-width:820px;margin:10px auto 0;text-align:left;color:rgba(232,222,209,.56);font-size:18px;letter-spacing:.10em;text-transform:uppercase;">
+        <div style="max-width:820px;margin:10px auto 0;text-align:left;color:rgba(214,205,192,.56);font-size:18px;letter-spacing:.10em;text-transform:uppercase;">
           — Female, Realtor
         </div>
 
         <div style="max-width:820px;margin:26px auto 0;text-align:left;font-size:clamp(22px,2.4vw,30px);color:var(--muted);font-style:italic;">
           “Beyond the efficacy of his tools… John applies the greatest factor that any practitioner can utilize: Compassion. This cannot be overstated… Work with John, and you will be working with a true healer.”
         </div>
-        <div style="max-width:820px;margin:10px auto 0;text-align:left;color:rgba(232,222,209,.56);font-size:18px;letter-spacing:.10em;text-transform:uppercase;">
+        <div style="max-width:820px;margin:10px auto 0;text-align:left;color:rgba(214,205,192,.56);font-size:18px;letter-spacing:.10em;text-transform:uppercase;">
           — Male, Baker
         </div>
 
@@ -478,7 +483,7 @@
 
         <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:0;align-items:start;">
           <div style="padding-right:clamp(26px,4vw,56px);">
-            <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;">About</h3>
+            <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;color:var(--head);">About</h3>
 
             <p class="lede">
               I’m a licensed acupuncturist with years of experience working with complex,
@@ -496,10 +501,10 @@
           </div>
 
           <div style="padding-left:clamp(26px,4vw,56px);border-left:1px solid var(--rule);">
-            <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;">Contact</h3>
+            <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;color:var(--head);">Contact</h3>
 
             <p style="margin:0;color:var(--muted);font-size:20px;line-height:1.6;">
-              Text to book: <strong style="color:var(--ink);font-weight:600;">951-638-3932</strong><br />
+              Text to book: <strong style="color:var(--head);font-weight:600;">951-638-3932</strong><br />
               Email: <a href="mailto:wellness@johnfinnell.com" style="text-decoration:underline;text-underline-offset:4px;">wellness@johnfinnell.com</a>
             </p>
           </div>
