@@ -387,7 +387,7 @@
     @media (max-width: 920px){
       :root{
         --page-scale: 1; /* IMPORTANT: stops the site looking tiny on mobile */
-        --gutter: clamp(14px, 4vw, 22px);
+        --gutter: clamp(18px, 5vw, 28px);
       }
 
       .topbar{ padding: 14px 0 10px; }
@@ -430,9 +430,12 @@
     }
 
     @media (max-width: 420px){
-      .hero h1{ font-size: 42px; }
-      .hero p{ font-size: 18px; }
-    }
+  .hero h1{
+    font-size: 40px;
+    white-space: nowrap;
+  }
+  .hero p{ font-size: 18px; }
+}
   </style>
 </head>
 
@@ -454,7 +457,7 @@
   <main>
     <section class="hero" id="work-with-me">
       <div class="wrap">
-        <h1>John Finnell, LAc</h1>
+        <h1>John Finnell,&nbsp;LAc</h1>
 
         <p>
           Acupuncture &amp; holistic medicine for nervous system regulation, hormones, digestion,
