@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-  
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -10,6 +9,7 @@
     main{
       transform: scale(var(--page-scale));
       transform-origin: top center;
+      width: 100%;
     }
 
     /* =========================
@@ -38,7 +38,9 @@
       --img-stroke: rgba(238,231,221,.14);
 
       --container: 1080px;
-      --gutter: clamp(18px, 3vw, 36px);
+
+      /* a touch more breathing room on mobile */
+      --gutter: clamp(20px, 4vw, 40px);
 
       --hero-maxw: 640px;
       --hero-aspect: 4 / 5;
@@ -93,6 +95,7 @@
       max-width: var(--container);
       margin: 0 auto;
       padding: 0 var(--gutter);
+      box-sizing: border-box;
     }
 
     .topbar{ padding: 22px 0 14px; }
@@ -107,6 +110,7 @@
       letter-spacing: .10em;
       text-transform: uppercase;
       color: var(--muted);
+      white-space: nowrap;
     }
     .toplinks{
       display:flex;
@@ -116,6 +120,7 @@
       text-transform: uppercase;
       color: var(--muted);
       align-items: center;
+      white-space: nowrap;
     }
     .rule{
       height:1px;
@@ -164,9 +169,11 @@
       letter-spacing: .02em;
       color: var(--head);
     }
+
+    /* Helps prevent any “looks off-center” weirdness from rounding */
     .portrait-frame{
       margin: 28px auto 0;
-      width: min(var(--hero-maxw), 92vw);
+      width: min(var(--hero-maxw), 94vw);
       aspect-ratio: var(--hero-aspect);
       border: 1px solid var(--rule-soft);
       padding: 10px;
@@ -186,11 +193,11 @@
 
     section{ padding: var(--section-pad) 0; }
 
-    /* UPDATED: Title Case + softer tracking (no forced uppercase) */
+    /* Make section headers Initial Cap (no all-caps) */
     .section-title{
       margin: 0 0 16px;
       font-size: clamp(28px, 3vw, 40px);
-      letter-spacing: .02em;
+      letter-spacing: .01em;
       text-transform: none;
       font-weight: 600;
       color: var(--head);
@@ -215,7 +222,7 @@
     }
 
     .side-img-frame{
-      width: min(var(--side-img-maxw), 92vw);
+      width: min(var(--side-img-maxw), 94vw);
       justify-self: end;
       border: 1px solid var(--rule-soft);
       padding: 10px;
@@ -339,6 +346,19 @@
       line-height: 1.55;
     }
 
+    /* ====== ABOUT / CONTACT ====== */
+    .aboutgrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 0;
+      align-items:start;
+    }
+    .aboutcol{ padding-right: clamp(26px,4vw,56px); }
+    .contactcol{
+      padding-left: clamp(26px,4vw,56px);
+      border-left: 1px solid var(--rule-soft);
+    }
+
     footer{
       padding: 42px 0 56px;
       text-align:center;
@@ -347,11 +367,6 @@
     }
 
     @media (max-width: 920px){
-      /* UPDATED: disable global scaling on mobile to prevent iOS “drift” */
-      main{
-        transform: none;
-      }
-
       .row, .row.reverse{ grid-template-columns: 1fr; }
       .row.workwith{ grid-template-columns: 1fr; }
       .bullets.bullets-side{ margin-top: 18px; }
@@ -359,6 +374,28 @@
       .cards{ grid-template-columns: 1fr; }
       .cards.below-how{ grid-column: auto; }
       .toplinks{ gap: 12px; }
+
+      /* Stack About/Contact on mobile (fix the narrow newspaper columns) */
+      .aboutgrid{ grid-template-columns: 1fr; }
+      .aboutcol{ padding-right: 0; }
+      .contactcol{
+        margin-top: 36px;
+        padding-left: 0;
+        border-left: 0;
+        border-top: 1px solid var(--rule-soft);
+        padding-top: 30px;
+      }
+    }
+
+    /* Extra-small phones: keep hero title on one line */
+    @media (max-width: 420px){
+      .hero h1{
+        font-size: 34px;
+        white-space: nowrap;
+      }
+      .hero p{ font-size: 18px; }
+      /* tiny nudge for perceived portrait centering on narrow screens */
+      :root{ --hero-object-position: 49% 18%; }
     }
   </style>
 </head>
@@ -370,10 +407,7 @@
         <div class="brand">John Finnell, LAc</div>
 
         <nav class="toplinks" aria-label="Top navigation">
-          <!-- Contact first (primary action) -->
           <a href="#contact">Contact</a>
-
-          <!-- Toggle furthest right -->
           <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">Light</button>
         </nav>
       </div>
@@ -401,7 +435,7 @@
 
     <section>
       <div class="wrap">
-        <h2 class="section-title">What I Work With</h2>
+        <h2 class="section-title">What I work with</h2>
 
         <div class="row workwith">
           <div>
@@ -453,13 +487,13 @@
           </div>
 
           <div>
-            <h2 class="section-title">How I Work</h2>
+            <h2 class="section-title">How I work</h2>
 
             <p class="lede">
               My work is grounded, methodical, and individualized. I take time to listen, assess patterns,
               and adjust based on real response — not protocols alone.
             </p>
-            
+
             <p class="lede">
               This favors consistency over intensity. Small, well-timed inputs create stability —
               and stability is what allows deeper healing without pushing your system.
@@ -527,8 +561,8 @@
 
         <div style="height:1px;background:var(--rule-soft);margin:54px 0;"></div>
 
-        <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:0;align-items:start;">
-          <div style="padding-right:clamp(26px,4vw,56px);">
+        <div class="aboutgrid">
+          <div class="aboutcol">
             <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;color:var(--head);">About</h3>
 
             <p class="lede">
@@ -546,7 +580,7 @@
             </p>
           </div>
 
-          <div style="padding-left:clamp(26px,4vw,56px);border-left:1px solid var(--rule-soft);">
+          <div class="contactcol">
             <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;color:var(--head);">Contact</h3>
 
             <p style="margin:0;color:var(--muted);font-size:20px;line-height:1.6;">
@@ -573,12 +607,6 @@
     function fixScaledMainGap(){
       const main = document.querySelector("main");
       if(!main) return;
-
-      // UPDATED: don’t apply the scale-gap hack on mobile (since we disable scaling there)
-      if(window.innerWidth <= 920){
-        main.style.marginBottom = "0px";
-        return;
-      }
 
       const rootStyles = getComputedStyle(document.documentElement);
       const scale = parseFloat(rootStyles.getPropertyValue("--page-scale")) || 0.75;
@@ -612,7 +640,7 @@
 
       const saved = getSaved();
       if(saved === "light") setTheme("light");
-      else setTheme("dark"); // default
+      else setTheme("dark");
 
       if(btn){
         btn.addEventListener("click", function(){
