@@ -78,14 +78,6 @@
       padding: 0 var(--gutter);
     }
 
-    /* --- TIGHT DIVIDER PAIRING (prevents double-padding gaps) --- */
-.section-no-pad-bottom{ padding-bottom: 0 !important; }
-.section-no-pad-top{ padding-top: 0 !important; }
-
-/* optional: slightly tighter divider than 54px if you want */
-.section-divider{ margin: 44px 0; } /* was 54px */
-
-
     /* ===== TOP BAR ===== */
     .topbar{ padding: 22px 0 14px; }
     .topbar-inner{
@@ -117,11 +109,18 @@
       margin-top: 14px;
     }
 
-    /* Divider used BETWEEN sections (tight + consistent like your contact divider) */
     .section-divider{
       height: 1px;
       background: var(--rule-soft);
-      margin: 54px 0;
+      margin: clamp(36px, 6vw, 64px) 0;
+    }
+
+    /* Tighten spacing between specific sections (without touching global section rhythm) */
+    .section-tight-bottom{
+      padding-bottom: clamp(18px, 3vw, 32px) !important;
+    }
+    .section-tight-top{
+      padding-top: clamp(18px, 3vw, 32px) !important;
     }
 
     /* ===== HERO ===== */
@@ -250,9 +249,8 @@
       margin-top: 0.85em;
     }
 
-    /* Quote spacing tightened so divider doesn't create a huge dead zone */
     .quote{
-      margin: 36px auto 0;
+      margin: 42px auto 0;
       text-align:center;
       font-style: italic;
       color: var(--muted);
@@ -336,12 +334,6 @@
       font-size: 16px;
     }
 
-    /* Slightly tighter top padding for Testimonials section,
-       since we're now separating with a divider above it */
-    section.testimonials{
-      padding-top: clamp(34px, 5vw, 56px);
-    }
-
     /* =========================
        RESPONSIVE FIXES
        Key idea: remove scaling on mobile so margins aren't huge.
@@ -363,9 +355,6 @@
 
       /* frames feel less chunky on small screens */
       .portrait-frame, .side-img-frame, .banner-img-frame{ padding: 8px; }
-
-      /* Divider a touch tighter on small screens */
-      .section-divider{ margin: 42px 0; }
     }
 
     @media (max-width: 720px){
@@ -431,7 +420,7 @@
       </div>
     </section>
 
-    <section>
+    <section class="section-tight-bottom">
       <div class="wrap">
         <h2 class="section-title">What I Work With</h2>
 
@@ -470,22 +459,19 @@
         <div class="quote">
           I focus on understanding <em>why</em> symptoms are happening — not just managing them.
         </div>
-
-        <!-- NEW: divider after quote (tight + consistent) -->
-        <div class="section-divider"></div>
-     </div>
-</section>
-
-<section class="section-no-pad-top">
-  <div class="wrap">
-    <div class="row reverse">
-      <div class="side-img-frame">
-        <img
-          class="side-img desk"
-          src="assets/how-i-work-desk-bw.png"
-          alt="Desk with paper and tools"
-        />
       </div>
+    </section>
+
+    <section class="section-tight-top section-tight-bottom">
+      <div class="wrap">
+        <div class="row reverse">
+          <div class="side-img-frame">
+            <img
+              class="side-img desk"
+              src="assets/how-i-work-desk-bw.png"
+              alt="Desk with paper and tools"
+            />
+          </div>
 
           <div>
             <h2 class="section-title">How I Work</h2>
@@ -530,15 +516,15 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+    
+    <div class="wrap">
+      <div class="section-divider"></div>
+    </div>
 
-        <!-- NEW: divider after cards (prevents giant empty gap before Testimonials) -->
-        <div class="section-divider"></div>
-</div>
-</section>
-
-<section id="contact" class="testimonials section-no-pad-top">
-  <div class="wrap">
-
+    <section id="contact" class="section-tight-top">
+      <div class="wrap">
         <h2 style="text-align:center;margin:32px 0 18px;font-size:clamp(44px,5vw,64px);font-weight:600;letter-spacing:.01em;color:var(--head);">
           Testimonials
         </h2>
