@@ -1,234 +1,626 @@
 <!doctype html>
 <html lang="en">
+  
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>John Finnell, LAc — Acupuncture & Holistic Medicine</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>John Finnell, LAc — Acupuncture & Holistic Medicine</title>
 
-<style>
-main{
-  transform: scale(var(--page-scale));
-  transform-origin: top center;
-}
+  <style>
+    main{
+      transform: scale(var(--page-scale));
+      transform-origin: top center;
+    }
 
-:root{
-  --page-scale: 0.75;
+    /* =========================
+       THEME TOKENS (WARM LIGHT)
+    ========================== */
+    :root{
+      /* Desktop scale (keeps your premium “print” feel) */
+      --page-scale: 0.75;
 
-  --bg: #f5f2ee;
-  --head: rgba(27,27,27,.92);
-  --ink: rgba(27,27,27,.92);
-  --body: rgba(27,27,27,.86);
-  --muted: rgba(92,92,92,.86);
+      /* WARM LIGHT (single theme) */
+      --bg: #fbfaf8; /* warm white */
+      --head: rgba(27,27,27,.92);
+      --ink: rgba(27,27,27,.92);
+      --body: rgba(27,27,27,.86);
+      --muted: rgba(92,92,92,.86);
 
-  --rule: rgba(0,0,0,.18);
-  --rule-soft: rgba(0,0,0,.10);
+      /* outlines */
+      --rule: rgba(0,0,0,.18);
+      --rule-soft: rgba(0,0,0,.10);
 
-  --surface: rgba(255,255,255,.25);
-  --surface-2: rgba(255,255,255,.18);
+      /* warm, subtle surfaces (frames/cards) */
+      --surface: rgba(255,255,255,.72);
+      --surface-2: rgba(255,255,255,.62);
 
-  --img-stroke: rgba(0,0,0,.14);
+      /* warm image stroke */
+      --img-stroke: rgba(0,0,0,.14);
 
-  --container: 1080px;
-  --gutter: clamp(22px, 4vw, 44px);
+      --container: 1080px;
+      --gutter: clamp(22px, 4vw, 44px);
 
-  --section-pad: clamp(44px, 6vw, 86px);
-}
+      --hero-maxw: 640px;
+      --hero-aspect: 4 / 5;
+      --hero-object-position: 50% 18%;
+      --hero-scale: 1.00;
 
-html{ scroll-behavior:smooth; }
+      --side-img-maxw: 460px;
+      --side-img-aspect: 3 / 4;
 
-body{
-  margin:0;
-  min-height:100vh;
-  background:var(--bg);
-  color:var(--ink);
-  font-family:Georgia,"Times New Roman",Times,serif;
-  line-height:1.55;
-}
+      --ocean-object-position: 50% 62%;
+      --desk-object-position: 50% 50%;
 
-.wrap{
-  max-width:var(--container);
-  margin:0 auto;
-  padding:0 var(--gutter);
-}
+      --section-pad: clamp(44px, 6vw, 86px);
+      --row-gap: clamp(22px, 4vw, 40px);
+      --col-gap: clamp(26px, 5vw, 60px);
+    }
 
-.rule,
-.section-divider{
-  height:1px;
-  background:var(--rule-soft);
-}
+    html { scroll-behavior: smooth; }
+    body{
+      box-sizing: border-box;
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", Times, serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
 
-/* SECTION SPACING (unchanged default) */
-section{ padding:var(--section-pad) 0; }
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ opacity: .78; }
 
-/* TIGHT TRANSITION SECTIONS ONLY */
-section.tight{
-  padding: clamp(18px, 3vw, 32px) 0;
-}
+    .wrap{
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
 
-/* HERO */
-.hero{ text-align:center; padding-top:34px; }
-.hero h1{
-  margin:0;
-  font-size:clamp(42px,5vw,64px);
-}
-.hero p{
-  max-width:760px;
-  margin:10px auto 0;
-  font-size:clamp(19px,2.2vw,26px);
-  color:var(--muted);
-}
+    /* ===== TOP BAR ===== */
+    .topbar{ padding: 22px 0 14px; }
+    .topbar-inner{
+      display:flex;
+      align-items:center; /* FIX: consistent vertical alignment */
+      justify-content:space-between;
+      gap: 16px;
+    }
+    .brand{
+      font-size: 14px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .toplinks{
+      display:flex;
+      gap: 18px;
+      font-size: 14px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: var(--muted);
+      align-items: center;
+      white-space: nowrap;
+    }
+    .rule{
+      height:1px;
+      background: var(--rule-soft);
+      margin-top: 14px;
+    }
 
-.hero-cta{
-  display:inline-block;
-  margin-top:22px;
-  padding:12px 18px;
-  border:1px solid var(--rule-soft);
-}
+    /* UPDATED: tighter divider spacing so it doesn't create a huge gap */
+    .section-divider{
+      height: 1px;
+      background: var(--rule-soft);
+      margin: clamp(18px, 3vw, 28px) 0;
+    }
 
-/* TYPOGRAPHY */
-.section-title{
-  margin:0 0 16px;
-  font-size:clamp(28px,3vw,40px);
-}
+    /* NEW: tighten padding only where applied (doesn't change site globally) */
+    .section-tight-top{
+      padding-top: clamp(24px, 4vw, 44px) !important;
+    }
+    .section-tight-bottom{
+      padding-bottom: clamp(24px, 4vw, 44px) !important;
+    }
 
-.lede{
-  font-size:clamp(20px,2.2vw,28px);
-  color:var(--body);
-  max-width:70ch;
-}
+    /* ===== HERO ===== */
+    .hero{
+      padding: 34px 0 10px;
+      text-align: center;
+    }
+    .hero h1{
+      margin: 0;
+      font-size: clamp(42px, 5vw, 64px);
+      letter-spacing: .01em;
+      font-weight: 600;
+      color: var(--head);
+      line-height: 1.08;
+    }
+    .hero p{
+      margin: 10px auto 0;
+      max-width: 760px;
+      font-size: clamp(19px, 2.2vw, 26px);
+      color: var(--muted);
+    }
+    .hero-cta{
+      display:inline-block;
+      margin-top: 22px;
+      padding: 12px 18px;
+      border: 1px solid var(--rule-soft);
+      background: transparent;
+      font-size: 20px;
+      letter-spacing: .02em;
+      color: var(--head);
+    }
+    .portrait-frame{
+      margin: 28px auto 0;
+      width: min(var(--hero-maxw), 92vw);
+      aspect-ratio: var(--hero-aspect);
+      border: 1px solid var(--rule-soft);
+      padding: 10px;
+      background: var(--surface);
+      box-sizing: border-box;
+    }
+    .portrait{
+      width: 100%;
+      height: 100%;
+      display:block;
+      object-fit: cover;
+      object-position: var(--hero-object-position);
+      transform: scale(var(--hero-scale));
+      transform-origin: center;
+      border: 1px solid var(--img-stroke);
+    }
 
-.quote{
-  text-align:center;
-  font-style:italic;
-  color:var(--muted);
-  font-size:clamp(22px,2.4vw,30px);
-  max-width:860px;
-  margin:42px auto 0;
-}
+    section{ padding: var(--section-pad) 0; }
 
-/* GRID */
-.row{
-  display:grid;
-  grid-template-columns:1.3fr .7fr;
-  gap:clamp(26px,5vw,60px);
-}
+    /* Section headers: Title Case (no all-caps) */
+    .section-title{
+      margin: 0 0 16px;
+      font-size: clamp(28px, 3vw, 40px);
+      letter-spacing: .01em;
+      text-transform: none;
+      font-weight: 600;
+      color: var(--head);
+    }
 
-/* CARDS */
-.cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px;
-  margin-top:26px;
-}
+    .lede{
+      margin: 0;
+      font-size: clamp(20px, 2.2vw, 28px);
+      color: var(--body);
+      max-width: 70ch;
+    }
+    .lede + .lede{ margin-top: 18px; }
 
-.card{
-  border:1px solid var(--rule-soft);
-  padding:18px;
-  background:var(--surface-2);
-}
+    .row{
+      display:grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: var(--col-gap);
+      align-items: start;
+    }
+    .row.reverse{
+      grid-template-columns: 0.85fr 1.15fr;
+    }
 
-.card h3{
-  margin:0 0 10px;
-  font-size:22px;
-}
+    .side-img-frame{
+      width: min(var(--side-img-maxw), 92vw);
+      justify-self: end;
+      border: 1px solid var(--rule-soft);
+      padding: 10px;
+      background: var(--surface);
+      box-sizing: border-box;
+    }
+    .row.reverse .side-img-frame{ justify-self: start; }
 
-.card p{
-  margin:0;
-  font-size:24px;
-  color:var(--muted);
-}
+    .side-img{
+      width: 100%;
+      aspect-ratio: var(--side-img-aspect);
+      display: block;
+      object-fit: cover;
+      border: 1px solid var(--img-stroke);
+    }
 
-/* FOOTER */
-footer{
-  padding:42px 0 56px;
-  text-align:center;
-  font-size:16px;
-  color:var(--muted);
-}
-</style>
+    .side-img.ocean{ object-position: var(--ocean-object-position); }
+    .side-img.desk{ object-position: var(--desk-object-position); }
+
+    /* ====== BULLETS ====== */
+    .bullets{
+      margin: 34px 0 0;
+      padding: 0;
+      list-style: none;
+      max-width: none;
+    }
+
+    .bullets li{
+      display:flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: clamp(20px, 2.2vw, 28px);
+      color: var(--muted);
+      margin: 16px 0;
+      line-height: 1.45;
+    }
+
+    .dash{
+      width: 30px;
+      flex: 0 0 30px;
+      height: 2px;
+      background: color-mix(in srgb, var(--muted) 45%, transparent);
+      margin-top: 0.85em;
+    }
+
+    .quote{
+      margin: 42px auto 0;
+      text-align:center;
+      font-style: italic;
+      color: var(--muted);
+      font-size: clamp(22px, 2.4vw, 30px);
+      max-width: 860px;
+    }
+
+    /* ====== WHAT I WORK WITH ====== */
+    .row.workwith{
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: start;
+    }
+
+    .bullets.bullets-side{
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .bullets.bullets-side li{ margin: 0; }
+
+    .banner-img-frame{
+      margin-top: 34px;
+      border: 1px solid var(--rule-soft);
+      padding: 10px;
+      background: var(--surface);
+      box-sizing: border-box;
+    }
+
+    .banner-img-frame.work-with-image{
+      grid-column: 1 / -1;
+      width: 100%;
+      max-width: none;
+    }
+
+    .banner-img{
+      width: 100%;
+      height: clamp(260px, 34vw, 380px);
+      display: block;
+      object-fit: cover;
+      border: 1px solid var(--img-stroke);
+    }
+
+    .banner-img.ocean{ object-position: var(--ocean-object-position); }
+
+    /* ====== HOW I WORK CARDS ====== */
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 26px;
+    }
+    .cards.below-how{
+      grid-column: 1 / -1;
+      margin-top: 28px;
+    }
+
+    .card{
+      border: 1px solid var(--rule-soft);
+      padding: 18px 18px 20px;
+      background: var(--surface-2);
+    }
+   .card h3{
+  margin: 0 0 10px;
+  font-size: 24px;
+  letter-spacing: .02em; /* was .12em — too wide for normal case */
+  text-transform: none;  /* kills all-caps */
+  color: var(--head);
+    }
+    .card p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 24px;
+      line-height: 1.55;
+    }
+
+    footer{
+      padding: 42px 0 56px;
+      text-align:center;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    /* =========================
+       RESPONSIVE FIXES
+       Key idea: remove scaling on mobile so margins aren't huge.
+    ========================== */
+    @media (max-width: 920px){
+      :root{
+        --page-scale: 1; /* FIX: kill the “giant side margins” on mobile */
+        --gutter: clamp(16px, 4vw, 22px); /* “in between” breathing room */
+      }
+
+      .row, .row.reverse{ grid-template-columns: 1fr; }
+      .row.workwith{ grid-template-columns: 1fr; }
+      .bullets.bullets-side{ margin-top: 18px; }
+      .side-img-frame, .row.reverse .side-img-frame{ justify-self: center; }
+      .cards{ grid-template-columns: 1fr; }
+      .cards.below-how{ grid-column: auto; }
+
+      .toplinks{ gap: 12px; }
+
+      /* frames feel less chunky on small screens */
+      .portrait-frame, .side-img-frame, .banner-img-frame{ padding: 8px; }
+    }
+
+    @media (max-width: 720px){
+      .about-contact-grid{
+        grid-template-columns: 1fr !important;
+        gap: 28px !important;
+      }
+
+      .about-contact-right{
+        border-left: 0 !important;
+        padding-left: 0 !important;
+        margin-top: 6px;
+      }
+    }
+
+    @media (max-width: 520px){
+      .brand{ font-size: 13px; }
+      .toplinks{ font-size: 13px; }
+
+      /* Hero title: smaller to avoid wrap */
+      .hero h1{
+        font-size: 38px;
+        letter-spacing: 0;
+      }
+      .hero p{ font-size: 18px; }
+    }
+
+    @media (max-width: 420px){
+      .hero h1{ font-size: 34px; }
+    }
+  </style>
 </head>
 
 <body>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="topbar-inner">
+        <div class="brand">John Finnell, LAc</div>
 
-<main>
-
-<!-- WHAT I WORK WITH -->
-<section>
-  <div class="wrap">
-    <h2 class="section-title">What I Work With</h2>
-
-    <p class="lede">
-      Most people I work with don’t have just one issue — they have patterns.
-    </p>
-
-    <div class="quote">
-      I focus on understanding <em>why</em> symptoms are happening — not just managing them.
-    </div>
-  </div>
-</section>
-
-<!-- DIVIDER AFTER QUOTE -->
-<section class="tight" aria-hidden="true">
-  <div class="wrap">
-    <div class="section-divider"></div>
-  </div>
-</section>
-
-<!-- HOW I WORK -->
-<section>
-  <div class="wrap">
-    <h2 class="section-title">How I Work</h2>
-
-    <p class="lede">
-      My work is grounded, methodical, and individualized.
-    </p>
-
-    <div class="cards">
-      <div class="card">
-        <h3>1. Start</h3>
-        <p>A short intake and conversation.</p>
+        <nav class="toplinks" aria-label="Top navigation">
+          <a href="#contact">Contact</a>
+        </nav>
       </div>
-      <div class="card">
-        <h3>2. Plan</h3>
-        <p>A focused plan that actually moves the needle.</p>
-      </div>
-      <div class="card">
-        <h3>3. Adjust</h3>
-        <p>Track response and refine.</p>
-      </div>
+      <div class="rule"></div>
     </div>
-  </div>
-</section>
+  </header>
 
-<!-- DIVIDER AFTER CARDS -->
-<section class="tight" aria-hidden="true">
-  <div class="wrap">
-    <div class="section-divider"></div>
-  </div>
-</section>
+  <main>
+    <section class="hero" id="work-with-me">
+      <div class="wrap">
+        <h1>John Finnell, LAc</h1>
 
-<!-- TESTIMONIALS -->
-<section id="contact">
-  <div class="wrap">
-    <h2 class="section-title" style="text-align:center;">Testimonials</h2>
+        <p>
+          Acupuncture &amp; holistic medicine for nervous system regulation, hormones, digestion,
+          and stress-related conditions — steady, calm, and collaborative.
+        </p>
 
-    <div class="quote">
-      “Seeing John as a practitioner is a true partnership for your health…”
+        <a class="hero-cta" href="#contact">Book a consult</a>
+
+        <div class="portrait-frame" aria-label="Portrait of John Finnell">
+          <img class="portrait" src="assets/johnfinnell-portrait-1.png" alt="John Finnell portrait" />
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT I WORK WITH (tight bottom so next section sits closer) -->
+    <section class="section-tight-bottom">
+      <div class="wrap">
+        <h2 class="section-title">What I Work With</h2>
+
+        <div class="row workwith">
+          <div>
+            <p class="lede">
+              Most people I work with don’t have just one issue — they have patterns. Stress, hormones,
+              digestion, sleep, and energy are part of the same system, and symptoms tend to show up
+              where the system is under the most strain.
+            </p>
+
+            <p class="lede">
+              These symptoms are often connected. My role is to help identify patterns beneath them
+              and support your body’s ability to regulate over time — at a pace your system can handle.
+            </p>
+          </div>
+
+          <div>
+            <ul class="bullets bullets-side">
+              <li><span class="dash"></span><span>Chronic stress and nervous system dysregulation</span></li>
+              <li><span class="dash"></span><span>Hormonal and thyroid-related symptoms</span></li>
+              <li><span class="dash"></span><span>Digestive and metabolic issues</span></li>
+              <li><span class="dash"></span><span>Fatigue, burnout, and persistent tension</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="banner-img-frame work-with-image">
+          <img
+            class="banner-img ocean"
+            src="assets/what-i-work-with-hands-bw.png"
+            alt="Hands during acupuncture session"
+          />
+        </div>
+
+        <div class="quote">
+          I focus on understanding <em>why</em> symptoms are happening — not just managing them.
+        </div>
+
+        <!-- NEW: divider after quote -->
+        <div class="section-divider" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- HOW I WORK (tight top + bottom so testimonials come up) -->
+    <section class="section-tight-top section-tight-bottom">
+      <div class="wrap">
+        <div class="row reverse">
+          <div class="side-img-frame">
+            <img
+              class="side-img desk"
+              src="assets/how-i-work-desk-bw.png"
+              alt="Desk with paper and tools"
+            />
+          </div>
+
+          <div>
+            <h2 class="section-title">How I Work</h2>
+
+            <p class="lede">
+              My work is grounded, methodical, and individualized. I take time to listen, assess patterns,
+              and adjust based on real response — not protocols alone.
+            </p>
+            
+            <p class="lede">
+              This favors consistency over intensity. Small, well-timed inputs create stability —
+              and stability is what allows deeper healing without pushing your system.
+            </p>
+
+            <p class="lede">
+              Whether in person or remotely, the process is collaborative and paced.
+              We’re not chasing symptoms. We’re restoring function.
+            </p>
+          </div>
+
+          <div class="cards below-how" aria-label="How it works steps">
+            <div class="card">
+              <h3>1. Start</h3>
+              <p>
+                A short intake + conversation to understand what’s happening, what you’ve tried,
+                and what your body is signaling.
+              </p>
+            </div>
+            <div class="card">
+              <h3>2. Plan</h3>
+              <p>
+                A focused plan that may include acupuncture, herbal support, nutrition strategy,
+                and lifestyle levers that actually move the needle.
+              </p>
+            </div>
+            <div class="card">
+              <h3>3. Adjust</h3>
+              <p>
+                We track response and refine. The goal is stability, resilience, and a system that
+                can handle real life again.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- NEW: divider after cards -->
+        <div class="section-divider" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS (tight top only) -->
+    <section id="contact" class="section-tight-top">
+      <div class="wrap">
+      <h2 style="text-align:center;margin:32px 0 18px;font-size:clamp(44px,5vw,64px);font-weight:600;letter-spacing:.01em;color:var(--head);">
+        Testimonials
+        </h2>
+        
+        <div style="max-width:820px;margin:26px auto 0;text-align:left;font-size:clamp(22px,2.4vw,30px);color:var(--muted);font-style:italic;">
+          “Seeing John as a practitioner is a true partnership for your health… I highly recommend John Finnell… and have total confidence in his ability to provide the highest level of care.”
+        </div>
+        <div style="max-width:820px;margin:10px auto 0;text-align:left;color:color-mix(in srgb, var(--muted) 80%, transparent);font-size:18px;letter-spacing:.10em;text-transform:uppercase;">
+          — Female, Registered Nurse
+        </div>
+
+        <div style="max-width:820px;margin:26px auto 0;text-align:left;font-size:clamp(22px,2.4vw,30px);color:var(--muted);font-style:italic;">
+          “I’ve had chronic migraines… for over 20 years… I’ve not had a migraine since beginning treatment.”
+        </div>
+        <div style="max-width:820px;margin:10px auto 0;text-align:left;color:color-mix(in srgb, var(--muted) 80%, transparent);font-size:18px;letter-spacing:.10em;text-transform:uppercase;">
+          — Female, Realtor
+        </div>
+
+        <div style="max-width:820px;margin:26px auto 0;text-align:left;font-size:clamp(22px,2.4vw,30px);color:var(--muted);font-style:italic;">
+          “Beyond the efficacy of his tools… John applies the greatest factor that any practitioner can utilize: Compassion. This cannot be overstated… Work with John, and you will be working with a true healer.”
+        </div>
+        <div style="max-width:820px;margin:10px auto 0;text-align:left;color:color-mix(in srgb, var(--muted) 80%, transparent);font-size:18px;letter-spacing:.10em;text-transform:uppercase;">
+          — Male, Baker
+        </div>
+
+        <div style="height:1px;background:var(--rule-soft);margin:54px 0;"></div>
+
+        <div class="about-contact-grid" style="display:grid;grid-template-columns:1.1fr .9fr;gap:0;align-items:start;">
+          <div style="padding-right:clamp(26px,4vw,56px);">
+            <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;color:var(--head);">About</h3>
+
+            <p class="lede">
+              I’m a licensed acupuncturist with years of experience working with complex,
+              stress-related health patterns.
+            </p>
+
+            <p class="lede" style="margin-top:18px;">
+              My approach blends Eastern medicine with a clear, systems-based understanding of the body.
+              I value clarity, steadiness, and meeting people where they are.
+            </p>
+
+            <p class="lede" style="margin-top:18px;">
+              Outside the clinic, I value movement, creativity, and time offline.
+            </p>
+          </div>
+
+          <div class="about-contact-right" style="padding-left:clamp(26px,4vw,56px);border-left:1px solid var(--rule-soft);">
+            <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;color:var(--head);">Contact</h3>
+
+            <p style="margin:0;color:var(--muted);font-size:20px;line-height:1.6;">
+              Text to book: <strong style="color:var(--head);font-weight:600;">951-638-3932</strong><br />
+              Email: <a href="mailto:wellness@johnfinnell.com" style="text-decoration:underline;text-underline-offset:4px;">wellness@johnfinnell.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      © <span id="year"></span> John Finnell, LAc
     </div>
-  </div>
-</section>
+  </footer>
 
-</main>
+  <script>
+    // year
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-<footer>
-  <div class="wrap">
-    © <span id="year"></span> John Finnell, LAc
-  </div>
-</footer>
+    // fix extra scroll caused by transform: scale()
+    function fixScaledMainGap(){
+      const main = document.querySelector("main");
+      if(!main) return;
 
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+      const rootStyles = getComputedStyle(document.documentElement);
+      const scale = parseFloat(rootStyles.getPropertyValue("--page-scale")) || 1;
 
+      // If scale is 1, no gap to fix.
+      if (scale === 1){
+        main.style.marginBottom = "0px";
+        return;
+      }
+
+      const full = main.scrollHeight;
+      const ghost = full * (1 - scale);
+      main.style.marginBottom = `-${ghost}px`;
+    }
+
+    window.addEventListener("load", fixScaledMainGap);
+    window.addEventListener("resize", fixScaledMainGap);
+  </script>
 </body>
 </html>
