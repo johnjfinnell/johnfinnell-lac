@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="en">
   
@@ -13,30 +14,29 @@
     }
 
     /* =========================
-       THEME TOKENS (DEFAULT = DARK)
-       We'll swap <html data-theme="light"> via JS.
+       THEME TOKENS (WARM LIGHT)
     ========================== */
     :root{
       /* Desktop scale (keeps your premium “print” feel) */
       --page-scale: 0.75;
 
-      /* DARK (default) */
-      --bg: #141210;
-      --head: rgba(232,222,209,.84);
-      --ink: rgba(238,231,221,.88);
-      --body: rgba(232,222,209,.78);
-      --muted: rgba(214,205,192,.66);
+      /* WARM LIGHT (single theme) */
+      --bg: #fbfaf8; /* warm white */
+      --head: rgba(27,27,27,.92);
+      --ink: rgba(27,27,27,.92);
+      --body: rgba(27,27,27,.86);
+      --muted: rgba(92,92,92,.86);
 
       /* outlines */
-      --rule: rgba(214,205,192,.18);
-      --rule-soft: rgba(214,205,192,.10);
+      --rule: rgba(0,0,0,.18);
+      --rule-soft: rgba(0,0,0,.10);
 
       /* warm, subtle surfaces (frames/cards) */
-      --surface: rgba(238,231,221,.055);
-      --surface-2: rgba(238,231,221,.045);
+      --surface: rgba(255,255,255,.72);
+      --surface-2: rgba(255,255,255,.62);
 
       /* warm image stroke */
-      --img-stroke: rgba(238,231,221,.14);
+      --img-stroke: rgba(0,0,0,.14);
 
       --container: 1080px;
       --gutter: clamp(22px, 4vw, 44px);
@@ -55,23 +55,6 @@
       --section-pad: clamp(44px, 6vw, 86px);
       --row-gap: clamp(22px, 4vw, 40px);
       --col-gap: clamp(26px, 5vw, 60px);
-    }
-
-    /* LIGHT THEME OVERRIDES */
-    html[data-theme="light"]{
-      --bg: #f5f2ee;
-      --head: rgba(27,27,27,.92);
-      --ink: rgba(27,27,27,.92);
-      --body: rgba(27,27,27,.86);
-      --muted: rgba(92,92,92,.86);
-
-      --rule: rgba(0,0,0,.18);
-      --rule-soft: rgba(0,0,0,.10);
-
-      --surface: rgba(255,255,255,.25);
-      --surface-2: rgba(255,255,255,.18);
-
-      --img-stroke: rgba(0,0,0,.14);
     }
 
     html { scroll-behavior: smooth; }
@@ -126,20 +109,6 @@
       background: var(--rule-soft);
       margin-top: 14px;
     }
-
-    /* Theme toggle button */
-    .theme-toggle{
-      border: 1px solid var(--rule-soft);
-      background: transparent;
-      color: var(--muted);
-      padding: 8px 12px;
-      font-size: 13px;
-      letter-spacing: .10em;
-      text-transform: uppercase;
-      cursor: pointer;
-      line-height: 1;
-    }
-    .theme-toggle:hover{ opacity: .85; }
 
     /* ===== HERO ===== */
     .hero{
@@ -376,22 +345,21 @@
     }
 
     @media (max-width: 720px){
-  .about-contact-grid{
-    grid-template-columns: 1fr !important;
-    gap: 28px !important;
-  }
+      .about-contact-grid{
+        grid-template-columns: 1fr !important;
+        gap: 28px !important;
+      }
 
-  .about-contact-right{
-    border-left: 0 !important;
-    padding-left: 0 !important;
-    margin-top: 6px;
-  }
-}
+      .about-contact-right{
+        border-left: 0 !important;
+        padding-left: 0 !important;
+        margin-top: 6px;
+      }
+    }
 
     @media (max-width: 520px){
       .brand{ font-size: 13px; }
       .toplinks{ font-size: 13px; }
-      .theme-toggle{ padding: 8px 10px; }
 
       /* Hero title: smaller to avoid wrap */
       .hero h1{
@@ -415,7 +383,6 @@
 
         <nav class="toplinks" aria-label="Top navigation">
           <a href="#contact">Contact</a>
-          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">Light</button>
         </nav>
       </div>
       <div class="rule"></div>
@@ -435,7 +402,7 @@
         <a class="hero-cta" href="#contact">Book a consult</a>
 
         <div class="portrait-frame" aria-label="Portrait of John Finnell">
-          <img class="portrait" src="johnfinnell-portrait-1.png" alt="John Finnell portrait" />
+          <img class="portrait" src="assets/johnfinnell-portrait-1.png" alt="John Finnell portrait" />
         </div>
       </div>
     </section>
@@ -568,7 +535,7 @@
 
         <div style="height:1px;background:var(--rule-soft);margin:54px 0;"></div>
 
-<div class="about-contact-grid" style="display:grid;grid-template-columns:1.1fr .9fr;gap:0;align-items:start;">
+        <div class="about-contact-grid" style="display:grid;grid-template-columns:1.1fr .9fr;gap:0;align-items:start;">
           <div style="padding-right:clamp(26px,4vw,56px);">
             <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;color:var(--head);">About</h3>
 
@@ -587,7 +554,7 @@
             </p>
           </div>
 
-<div class="about-contact-right" style="padding-left:clamp(26px,4vw,56px);border-left:1px solid var(--rule-soft);">
+          <div class="about-contact-right" style="padding-left:clamp(26px,4vw,56px);border-left:1px solid var(--rule-soft);">
             <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;color:var(--head);">Contact</h3>
 
             <p style="margin:0;color:var(--muted);font-size:20px;line-height:1.6;">
@@ -628,40 +595,6 @@
       const ghost = full * (1 - scale);
       main.style.marginBottom = `-${ghost}px`;
     }
-
-    // theme toggle (default = dark)
-    (function initTheme(){
-      const root = document.documentElement;
-      const btn = document.getElementById("themeToggle");
-      const key = "jf_theme";
-
-      function setTheme(theme){
-        if(theme === "light"){
-          root.setAttribute("data-theme", "light");
-          if(btn) btn.textContent = "Dark";
-        }else{
-          root.removeAttribute("data-theme");
-          if(btn) btn.textContent = "Light";
-        }
-        try{ localStorage.setItem(key, theme); }catch(e){}
-      }
-
-      function getSaved(){
-        try{ return localStorage.getItem(key); }catch(e){ return null; }
-      }
-
-      const saved = getSaved();
-      if(saved === "light") setTheme("light");
-      else setTheme("dark"); // default
-
-      if(btn){
-        btn.addEventListener("click", function(){
-          const isLight = root.getAttribute("data-theme") === "light";
-          setTheme(isLight ? "dark" : "light");
-          fixScaledMainGap();
-        });
-      }
-    })();
 
     window.addEventListener("load", fixScaledMainGap);
     window.addEventListener("resize", fixScaledMainGap);
