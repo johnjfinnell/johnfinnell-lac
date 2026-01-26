@@ -78,6 +78,14 @@
       padding: 0 var(--gutter);
     }
 
+    /* --- TIGHT DIVIDER PAIRING (prevents double-padding gaps) --- */
+.section-no-pad-bottom{ padding-bottom: 0 !important; }
+.section-no-pad-top{ padding-top: 0 !important; }
+
+/* optional: slightly tighter divider than 54px if you want */
+.section-divider{ margin: 44px 0; } /* was 54px */
+
+
     /* ===== TOP BAR ===== */
     .topbar{ padding: 22px 0 14px; }
     .topbar-inner{
@@ -465,19 +473,19 @@
 
         <!-- NEW: divider after quote (tight + consistent) -->
         <div class="section-divider"></div>
-      </div>
-    </section>
+     </div>
+</section>
 
-    <section>
-      <div class="wrap">
-        <div class="row reverse">
-          <div class="side-img-frame">
-            <img
-              class="side-img desk"
-              src="assets/how-i-work-desk-bw.png"
-              alt="Desk with paper and tools"
-            />
-          </div>
+<section class="section-no-pad-top">
+  <div class="wrap">
+    <div class="row reverse">
+      <div class="side-img-frame">
+        <img
+          class="side-img desk"
+          src="assets/how-i-work-desk-bw.png"
+          alt="Desk with paper and tools"
+        />
+      </div>
 
           <div>
             <h2 class="section-title">How I Work</h2>
@@ -525,11 +533,12 @@
 
         <!-- NEW: divider after cards (prevents giant empty gap before Testimonials) -->
         <div class="section-divider"></div>
-      </div>
-    </section>
+</div>
+</section>
 
-    <section id="contact" class="testimonials">
-      <div class="wrap">
+<section id="contact" class="testimonials section-no-pad-top">
+  <div class="wrap">
+
         <h2 style="text-align:center;margin:32px 0 18px;font-size:clamp(44px,5vw,64px);font-weight:600;letter-spacing:.01em;color:var(--head);">
           Testimonials
         </h2>
