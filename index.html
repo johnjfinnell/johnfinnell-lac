@@ -109,19 +109,11 @@
       margin-top: 14px;
     }
 
-    /* UPDATED: tighter divider spacing so it doesn't create a huge gap */
+    /* Divider used BETWEEN sections (tight + consistent like your contact divider) */
     .section-divider{
       height: 1px;
       background: var(--rule-soft);
-      margin: clamp(18px, 3vw, 28px) 0;
-    }
-
-    /* NEW: tighten padding only where applied (doesn't change site globally) */
-    .section-tight-top{
-      padding-top: clamp(24px, 4vw, 44px) !important;
-    }
-    .section-tight-bottom{
-      padding-bottom: clamp(24px, 4vw, 44px) !important;
+      margin: 54px 0;
     }
 
     /* ===== HERO ===== */
@@ -250,8 +242,9 @@
       margin-top: 0.85em;
     }
 
+    /* Quote spacing tightened so divider doesn't create a huge dead zone */
     .quote{
-      margin: 42px auto 0;
+      margin: 36px auto 0;
       text-align:center;
       font-style: italic;
       color: var(--muted);
@@ -314,12 +307,12 @@
       padding: 18px 18px 20px;
       background: var(--surface-2);
     }
-   .card h3{
-  margin: 0 0 10px;
-  font-size: 24px;
-  letter-spacing: .02em; /* was .12em — too wide for normal case */
-  text-transform: none;  /* kills all-caps */
-  color: var(--head);
+    .card h3{
+      margin: 0 0 10px;
+      font-size: 24px;
+      letter-spacing: .02em; /* was .12em — too wide for normal case */
+      text-transform: none;  /* kills all-caps */
+      color: var(--head);
     }
     .card p{
       margin: 0;
@@ -333,6 +326,12 @@
       text-align:center;
       color: var(--muted);
       font-size: 16px;
+    }
+
+    /* Slightly tighter top padding for Testimonials section,
+       since we're now separating with a divider above it */
+    section.testimonials{
+      padding-top: clamp(34px, 5vw, 56px);
     }
 
     /* =========================
@@ -356,6 +355,9 @@
 
       /* frames feel less chunky on small screens */
       .portrait-frame, .side-img-frame, .banner-img-frame{ padding: 8px; }
+
+      /* Divider a touch tighter on small screens */
+      .section-divider{ margin: 42px 0; }
     }
 
     @media (max-width: 720px){
@@ -421,8 +423,7 @@
       </div>
     </section>
 
-    <!-- WHAT I WORK WITH (tight bottom so next section sits closer) -->
-    <section class="section-tight-bottom">
+    <section>
       <div class="wrap">
         <h2 class="section-title">What I Work With</h2>
 
@@ -462,13 +463,12 @@
           I focus on understanding <em>why</em> symptoms are happening — not just managing them.
         </div>
 
-        <!-- NEW: divider after quote -->
-        <div class="section-divider" aria-hidden="true"></div>
+        <!-- NEW: divider after quote (tight + consistent) -->
+        <div class="section-divider"></div>
       </div>
     </section>
 
-    <!-- HOW I WORK (tight top + bottom so testimonials come up) -->
-    <section class="section-tight-top section-tight-bottom">
+    <section>
       <div class="wrap">
         <div class="row reverse">
           <div class="side-img-frame">
@@ -523,16 +523,15 @@
           </div>
         </div>
 
-        <!-- NEW: divider after cards -->
-        <div class="section-divider" aria-hidden="true"></div>
+        <!-- NEW: divider after cards (prevents giant empty gap before Testimonials) -->
+        <div class="section-divider"></div>
       </div>
     </section>
 
-    <!-- TESTIMONIALS (tight top only) -->
-    <section id="contact" class="section-tight-top">
+    <section id="contact" class="testimonials">
       <div class="wrap">
-      <h2 style="text-align:center;margin:32px 0 18px;font-size:clamp(44px,5vw,64px);font-weight:600;letter-spacing:.01em;color:var(--head);">
-        Testimonials
+        <h2 style="text-align:center;margin:32px 0 18px;font-size:clamp(44px,5vw,64px);font-weight:600;letter-spacing:.01em;color:var(--head);">
+          Testimonials
         </h2>
         
         <div style="max-width:820px;margin:26px auto 0;text-align:left;font-size:clamp(22px,2.4vw,30px);color:var(--muted);font-style:italic;">
