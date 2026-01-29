@@ -333,6 +333,31 @@
       color: var(--muted);
       font-size: 16px;
     }
+.footer-social{
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-social a{
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule-soft);
+  color: var(--muted);
+}
+
+.footer-social svg{
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.footer-social a:hover{
+  opacity: .75;
+}
 
     /* =========================
        RESPONSIVE FIXES
@@ -581,11 +606,25 @@
     </section>
   </main>
 
-  <footer>
-    <div class="wrap">
-      © <span id="year"></span> John Finnell, LAc
+ <footer>
+  <div class="wrap">
+    <div class="footer-social">
+      <a
+        href="https://instagram.com/YOURHANDLE"
+        target="_blank"
+        rel="noopener"
+        aria-label="Instagram"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.75a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
+        </svg>
+      </a>
     </div>
-  </footer>
+
+    © <span id="year"></span> John Finnell, LAc
+  </div>
+</footer>
+
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
