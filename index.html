@@ -327,37 +327,35 @@
       line-height: 1.55;
     }
 
+    /* NEW: Instagram under Contact */
+    .contact-social{
+      margin-top: 16px;
+    }
+    .contact-social a{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+    .contact-social svg{
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      opacity: .85;
+    }
+    .contact-social a:hover{
+      opacity: .75;
+    }
+
     footer{
       padding: 42px 0 56px;
       text-align:center;
       color: var(--muted);
       font-size: 16px;
     }
-.footer-social{
-  margin-bottom: 16px;
-  display: flex;
-  justify-content: center;
-}
-
-.footer-social a{
-  width: 34px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--rule-soft);
-  color: var(--muted);
-}
-
-.footer-social svg{
-  width: 18px;
-  height: 18px;
-  fill: currentColor;
-}
-
-.footer-social a:hover{
-  opacity: .75;
-}
 
     /* =========================
        RESPONSIVE FIXES
@@ -600,6 +598,15 @@
               Text to book: <strong style="color:var(--head);font-weight:600;">951-638-3932</strong><br />
               Email: <a href="mailto:wellness@johnfinnell.com" style="text-decoration:underline;text-underline-offset:4px;">wellness@johnfinnell.com</a>
             </p>
+
+            <p class="contact-social">
+              <a href="https://instagram.com/johnfinnell.lac/" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.75a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
+                </svg>
+                <span>Instagram</span>
+              </a>
+            </p>
           </div>
         </div>
       </div>
@@ -608,19 +615,6 @@
 
  <footer>
   <div class="wrap">
-    <div class="footer-social">
-      <a
-        href="https://instagram.com/johnfinnell.lac/"
-        target="_blank"
-        rel="noopener"
-        aria-label="Instagram"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.75a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
-        </svg>
-      </a>
-    </div>
-
     © <span id="year"></span> John Finnell, LAc
   </div>
 </footer>
