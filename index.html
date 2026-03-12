@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>John Finnell, LAc — Acupuncture & Holistic Medicine</title>
+  <title>John Finnell, LAc — Holistic Health & Physiological Consulting</title>
 
   <style>
     main{
@@ -12,29 +12,21 @@
       transform-origin: top center;
     }
 
-    /* =========================
-       THEME TOKENS (WARM LIGHT)
-    ========================== */
     :root{
-      /* Desktop scale (keeps your premium “print” feel) */
       --page-scale: 0.75;
 
-      /* WARM LIGHT (single theme) */
-      --bg: #fbfaf8; /* warm white */
+      --bg: #fbfaf8;
       --head: rgba(27,27,27,.92);
       --ink: rgba(27,27,27,.92);
       --body: rgba(27,27,27,.86);
       --muted: rgba(92,92,92,.86);
 
-      /* outlines */
       --rule: rgba(0,0,0,.18);
       --rule-soft: rgba(0,0,0,.10);
 
-      /* warm, subtle surfaces (frames/cards) */
       --surface: rgba(255,255,255,.72);
       --surface-2: rgba(255,255,255,.62);
 
-      /* warm image stroke */
       --img-stroke: rgba(0,0,0,.14);
 
       --container: 1080px;
@@ -78,11 +70,10 @@
       padding: 0 var(--gutter);
     }
 
-    /* ===== TOP BAR ===== */
     .topbar{ padding: 22px 0 14px; }
     .topbar-inner{
       display:flex;
-      align-items:center; /* FIX: consistent vertical alignment */
+      align-items:center;
       justify-content:space-between;
       gap: 16px;
     }
@@ -115,15 +106,13 @@
       margin: clamp(36px, 6vw, 64px) 0;
     }
 
-    /* === NEW: spacing tighten helpers (minimal, targeted) === */
     .section-tight-bottom{
-      padding-bottom: clamp(31px, 4.2vw, 60px) !important; /* ~30% less than section-pad */
+      padding-bottom: clamp(31px, 4.2vw, 60px) !important;
     }
     .testimonials{
-      padding-top: clamp(22px, 3vw, 43px) !important; /* ~50% less than section-pad */
+      padding-top: clamp(22px, 3vw, 43px) !important;
     }
 
-    /* ===== HERO ===== */
     .hero{
       padding: 34px 0 10px;
       text-align: center;
@@ -174,7 +163,6 @@
 
     section{ padding: var(--section-pad) 0; }
 
-    /* Section headers: Title Case (no all-caps) */
     .section-title{
       margin: 0 0 16px;
       font-size: clamp(28px, 3vw, 40px);
@@ -223,7 +211,6 @@
     .side-img.ocean{ object-position: var(--ocean-object-position); }
     .side-img.desk{ object-position: var(--desk-object-position); }
 
-    /* ====== BULLETS ====== */
     .bullets{
       margin: 34px 0 0;
       padding: 0;
@@ -258,7 +245,6 @@
       max-width: 860px;
     }
 
-    /* ====== WHAT I WORK WITH ====== */
     .row.workwith{
       grid-template-columns: 1.05fr 0.95fr;
       align-items: start;
@@ -296,7 +282,6 @@
 
     .banner-img.ocean{ object-position: var(--ocean-object-position); }
 
-    /* ====== HOW I WORK CARDS ====== */
     .cards{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -327,7 +312,6 @@
       line-height: 1.55;
     }
 
-    /* NEW: Instagram under Contact */
     .contact-social{
       margin-top: 16px;
     }
@@ -357,9 +341,6 @@
       font-size: 16px;
     }
 
-    /* =========================
-       RESPONSIVE FIXES
-    ========================== */
     @media (max-width: 920px){
       :root{
         --page-scale: 1;
@@ -425,11 +406,14 @@
   <main>
     <section class="hero" id="work-with-me">
       <div class="wrap">
-        <h1>John Finnell, LAc</h1>
+        <h1>When your body stops working the way it should, there’s always a reason.</h1>
 
         <p>
-          Acupuncture &amp; holistic medicine for nervous system regulation, hormones, digestion,
-          and stress-related conditions — steady, calm, and collaborative.
+          I help people understand the physiological patterns behind chronic symptoms and restore more stable energy, sleep, digestion, hormones, and metabolic function.
+        </p>
+
+        <p style="max-width:780px;margin:18px auto 0;font-size:clamp(17px,1.65vw,21px);color:var(--body);">
+          Over the past decade I’ve worked with thousands of patients, often seeing 50–60 people per week. That volume of clinical experience has shaped how I recognize patterns, connect the dots, and guide people back toward steadier health.
         </p>
 
         <a class="hero-cta" href="#contact">Book a consult</a>
@@ -440,7 +424,6 @@
       </div>
     </section>
 
-    <!-- Tighten bottom padding ~30% to reduce gap before How I Work -->
     <section class="section-tight-bottom">
       <div class="wrap">
         <h2 class="section-title">What I Work With</h2>
@@ -448,14 +431,15 @@
         <div class="row workwith">
           <div>
             <p class="lede">
-              Most people I work with don’t have just one issue — they have patterns. Stress, hormones,
-              digestion, sleep, and energy are part of the same system, and symptoms tend to show up
-              where the system is under the most strain.
+              Most people I work with don’t have just one isolated issue. They have patterns.
             </p>
 
             <p class="lede">
-              These symptoms are often connected. My role is to help identify patterns beneath them
-              and support your body’s ability to regulate over time — at a pace your system can handle.
+              Sleep, energy, digestion, stress, hormones, and metabolism are part of the same system. Symptoms usually show up where the system is under the most strain. My job is to step back, look at the whole picture, and understand what those patterns are pointing to.
+            </p>
+
+            <p class="lede">
+              Many of the people I work with have already tried multiple approaches and still feel like no one has fully connected the dots.
             </p>
           </div>
 
@@ -498,18 +482,15 @@
             <h2 class="section-title">How I Work</h2>
 
             <p class="lede">
-              My work is grounded, methodical, and individualized. I take time to listen, assess patterns,
-              and adjust based on real response — not protocols alone.
+              My work is grounded, methodical, and individualized. I take time to listen, assess patterns, and make decisions based on how your body is actually responding — not just on protocols.
             </p>
             
             <p class="lede">
-              This favors consistency over intensity. Small, well-timed inputs create stability —
-              and stability is what allows deeper healing without pushing your system.
+              The goal is not to throw ten things at the wall and hope something sticks. It’s to make thoughtful changes that restore function and create stability over time.
             </p>
 
             <p class="lede">
-              Whether in person or remotely, the process is collaborative and paced.
-              We’re not chasing symptoms. We’re restoring function.
+              Whether we work together in person or remotely, this is a collaborative process. The people who tend to benefit most are those who are curious about their health and willing to engage in understanding their body.
             </p>
           </div>
 
@@ -517,22 +498,19 @@
             <div class="card">
               <h3>1. Start</h3>
               <p>
-                A short intake + conversation to understand what’s happening, what you’ve tried,
-                and what your body is signaling.
+                We begin with a focused intake and conversation to understand what’s happening, what you’ve tried, and what patterns your body may be showing.
               </p>
             </div>
             <div class="card">
               <h3>2. Plan</h3>
               <p>
-                A focused plan that may include acupuncture, herbal support, nutrition strategy,
-                and lifestyle levers that actually move the needle.
+                From there, I build a clear plan that may include acupuncture, herbal support, nutrition, and lifestyle changes that actually move the needle.
               </p>
             </div>
             <div class="card">
               <h3>3. Adjust</h3>
               <p>
-                We track response and refine. The goal is stability, resilience, and a system that
-                can handle real life again.
+                We track response and refine as needed. The aim is a body that feels more stable, resilient, and able to handle real life again.
               </p>
             </div>
           </div>
@@ -540,13 +518,10 @@
       </div>
     </section>
 
-    <!-- Removed the divider line above Testimonials -->
-
-    <!-- Tighten top padding ~50% to reduce the big gap above Testimonials -->
-    <section id="contact" class="testimonials">
+    <section class="testimonials">
       <div class="wrap">
-      <h2 style="text-align:center;margin:32px 0 18px;font-size:clamp(44px,5vw,64px);font-weight:600;letter-spacing:.01em;color:var(--head);">
-        Testimonials
+        <h2 style="text-align:center;margin:32px 0 18px;font-size:clamp(44px,5vw,64px);font-weight:600;letter-spacing:.01em;color:var(--head);">
+          Patient Experiences
         </h2>
         
         <div style="max-width:820px;margin:26px auto 0;text-align:left;font-size:clamp(22px,2.4vw,30px);color:var(--muted);font-style:italic;">
@@ -577,24 +552,23 @@
             <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;color:var(--head);">About</h3>
 
             <p class="lede">
-              I’m a licensed acupuncturist with years of experience working with complex,
-              stress-related health patterns.
+              I know what it’s like to struggle with chronic health issues. My own journey started years ago after poor lifestyle choices, parasites from living abroad, and experimenting with restrictive diets that eventually crashed my metabolism in my early 40s.
             </p>
 
             <p class="lede" style="margin-top:18px;">
-              My approach blends Eastern medicine with a clear, systems-based understanding of the body.
-              I value clarity, steadiness, and meeting people where they are.
+              I went through severe insomnia, anxiety, and exhaustion before rebuilding my health from the ground up. That experience pushed me to study physiology more deeply and rethink many common assumptions about health.
             </p>
 
             <p class="lede" style="margin-top:18px;">
-              Outside the clinic, I value movement, creativity, and time offline.
+              Over the past decade I’ve treated thousands of patients, and what I’ve learned is that healing comes down to recognizing patterns in the body and restoring the system as a whole.
             </p>
           </div>
 
-          <div class="about-contact-right" style="padding-left:clamp(26px,4vw,56px);border-left:1px solid var(--rule-soft);">
+          <div class="about-contact-right" id="contact" style="padding-left:clamp(26px,4vw,56px);border-left:1px solid var(--rule-soft);">
             <h3 style="margin:0 0 14px;font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:.01em;color:var(--head);">Contact</h3>
 
             <p style="margin:0;color:var(--muted);font-size:20px;line-height:1.6;">
+              If you’re dealing with ongoing health issues and want a deeper look at what may be driving them, reach out below.<br /><br />
               Text to book: <strong style="color:var(--head);font-weight:600;">951-638-3932</strong><br />
               Email: <a href="mailto:wellness@johnfinnell.com" style="text-decoration:underline;text-underline-offset:4px;">wellness@johnfinnell.com</a>
             </p>
@@ -613,12 +587,11 @@
     </section>
   </main>
 
- <footer>
-  <div class="wrap">
-    © <span id="year"></span> John Finnell, LAc
-  </div>
-</footer>
-
+  <footer>
+    <div class="wrap">
+      © <span id="year"></span> John Finnell, LAc
+    </div>
+  </footer>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
